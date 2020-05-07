@@ -122,7 +122,7 @@ public class ConsumerController {
     }
 
 //    返回所有用户
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/allUser", method = RequestMethod.GET)
     public Object allUser(){
         return consumerService.allUser();
     }

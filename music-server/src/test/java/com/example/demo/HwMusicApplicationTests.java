@@ -92,11 +92,11 @@ public class HwMusicApplicationTests {
 public void consumerTest(){
 
     Consumer consumer = new Consumer();
-    consumer.setUsername("xul4");
-    consumer.setPassword("12345678");
+    consumer.setUsername("xul");
+    consumer.setPassword("123");
     consumer.setSex(new Byte("0"));
-    consumer.setPhoneNum("15666412237");
-    consumer.setEmail("12345678@qq.com");
+    consumer.setPhoneNum("15852727967");
+    consumer.setEmail("22222@qq.com");
     consumer.setBirth(new Date());
     consumer.setIntroduction("");
     consumer.setLocation("");

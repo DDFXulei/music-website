@@ -15,7 +15,7 @@
       </li>
       <li>
         <div class="head-search">
-          <input type="text" placeholder="搜索音乐" @keyup.enter="goSearch()" v-model="keywords">
+          <input type="text" placeholder="搜索产品" @keyup.enter="goSearch()" v-model="keywords">
           <div class="search-btn"  @click="goSearch()" >
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-sousuo"></use>
@@ -45,7 +45,7 @@ export default {
   mixins: [mixin],
   data () {
     return {
-      musicName: 'Yin-music',
+      musicName: 'Top-Air',
       navMsg: [], // 左侧导航栏
       loginMsg: [], // 右侧导航栏
       menuList: [], // 用户下拉菜单项

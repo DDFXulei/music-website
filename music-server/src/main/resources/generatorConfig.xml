@@ -14,7 +14,7 @@
     </commentGenerator>
 
     <!-- 数据库的相关配置 -->
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/tp_music?serverTimezone=Asia/Shanghai&amp;nullCatalogMeansCurrent=true" userId="root" password="1026"/>
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/topair?serverTimezone=Asia/Shanghai&amp;nullCatalogMeansCurrent=true" userId="root" password="root"/>
 
     <javaTypeResolver>
       <property name="forceBigDecimals" value="false"/>
@@ -42,10 +42,10 @@
     <table tableName="comment" domainObjectName="Comment" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
     <table tableName="consumer" domainObjectName="Consumer" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
     <table tableName="list_song" domainObjectName="ListSong" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
-    <table tableName="rank" domainObjectName="Rank" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+    <table tableName="rank2" domainObjectName="Rank2" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
     <table tableName="singer" domainObjectName="Singer" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
     <table tableName="song" domainObjectName="Song" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
     <table tableName="song_list" domainObjectName="SongList" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
-
+	<table tableName="product" domainObjectName="Product" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
   </context>
 </generatorConfiguration>

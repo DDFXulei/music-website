@@ -92,7 +92,7 @@ public class SongController {
             } else {
                 jsonObject.put("code", 0);
                 jsonObject.put("msg", "上传失败");
-                return jsonObject;
+                return jsonObject;	
             }
         } catch (IOException e) {
             jsonObject.put("code", 0);
@@ -126,7 +126,7 @@ public class SongController {
 //    返回指定歌手名的歌曲
     @RequestMapping(value = "/song/singerName/detail", method = RequestMethod.GET)
     public Object songOfSingerName(HttpServletRequest req){
-        String name = req.getParameter("name");
+        String name = req.getParameter("name");	
         return songService.songOfSingerName('%'+ name + '%');
     }
 

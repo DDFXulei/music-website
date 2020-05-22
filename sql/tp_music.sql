@@ -165,10 +165,10 @@ UNLOCK TABLES;
 -- Table structure for table `rank`
 --
 
-DROP TABLE IF EXISTS `rank`;
+DROP TABLE IF EXISTS `rank2`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `rank` (
+CREATE TABLE `rank2` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `songListId` bigint(20) unsigned NOT NULL,
   `consumerId` bigint(20) unsigned NOT NULL,
@@ -182,9 +182,9 @@ CREATE TABLE `rank` (
 -- Dumping data for table `rank`
 --
 
-LOCK TABLES `rank` WRITE;
+LOCK TABLES `rank2` WRITE;
 /*!40000 ALTER TABLE `rank` DISABLE KEYS */;
-INSERT INTO `rank` VALUES (1,2,1,7),(2,2,2,3),(3,1,1,4),(7,13,1,5),(19,21,1,5),(20,31,1,5),(21,5,1,0),(24,11,1,4),(25,10,1,10),(27,6,1,6),(28,7,1,10),(29,1,26,4),(30,7,26,2),(32,3,26,5),(33,14,26,9);
+INSERT INTO `rank2` VALUES (1,2,1,7),(2,2,2,3),(3,1,1,4),(7,13,1,5),(19,21,1,5),(20,31,1,5),(21,5,1,0),(24,11,1,4),(25,10,1,10),(27,6,1,6),(28,7,1,10),(29,1,26,4),(30,7,26,2),(32,3,26,5),(33,14,26,9);
 /*!40000 ALTER TABLE `rank` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,3 +285,17 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2020-04-05 22:05:53
+DROP TABLE IF EXISTS `product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` int(10) unsigned NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `product_intro` varchar(255) DEFAULT NULL,
+  `create_time` datetime NOT NULL COMMENT '发行时间',
+  `update_time` datetime NOT NULL,
+  `product_pic` varchar(255) DEFAULT NULL,
+  `product_url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;

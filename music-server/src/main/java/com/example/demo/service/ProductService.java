@@ -3,7 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 
 import com.example.demo.domain.Product;
-import com.example.demo.domain.Song;
+import java.lang.Long;
 
 public interface ProductService {
 
@@ -22,7 +22,7 @@ public interface ProductService {
 
     List<Product> Product();
 
-    List<Product> productOfId(Integer id);
+    List<Product> productOfId(Long id);
 
     List<Product> productOfName(String name);
 

@@ -53,6 +53,7 @@ public interface CommentMapper {
      */
     int updateByPrimaryKey(Comment record);
     
+    
     int updateCommentMsg(Comment record);
 
     int deleteComment(Integer id);

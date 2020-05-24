@@ -53,7 +53,6 @@ public interface ListSongMapper {
      */
     int updateByPrimaryKey(ListSong record);
     
-    
     int updateListSongMsg(ListSong record);
 
     int deleteListSong(Integer songId);

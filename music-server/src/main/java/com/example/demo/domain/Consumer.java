@@ -389,8 +389,6 @@ public class Consumer {
         this.updateTime = updateTime;
     }
     
-    
-    
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

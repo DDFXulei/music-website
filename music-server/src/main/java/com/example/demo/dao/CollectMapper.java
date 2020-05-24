@@ -55,6 +55,7 @@ public interface CollectMapper {
      */
     int updateByPrimaryKey(Collect record);
     
+    
     int existSongId(@Param("userId") Integer userId, @Param("songId") Integer songId);
 
     int updateCollectMsg(Collect collect);

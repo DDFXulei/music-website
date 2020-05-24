@@ -58,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> productOfId(Integer id) {
+	public List<Product> productOfId(Long id) {
 		// TODO Auto-generated method stub
 		return productMapper.productOfId(id);
 	}

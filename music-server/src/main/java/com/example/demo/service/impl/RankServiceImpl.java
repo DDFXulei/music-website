@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dao.RankMapper;
-import com.example.demo.domain.Rank;
+import com.example.demo.dao.Rank2Mapper;
+import com.example.demo.domain.Rank2;
 import com.example.demo.service.RankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class RankServiceImpl implements RankService {
 
     @Autowired
-    private RankMapper rankMapper;
+    private Rank2Mapper rankMapper;
 
     @Override
     public int rankOfSongListId(Long songListId) {
@@ -18,7 +18,7 @@ public class RankServiceImpl implements RankService {
     }
 
     @Override
-    public boolean addRank(Rank rank) {
+    public boolean addRank(Rank2 rank) {
 
         return rankMapper.insertSelective(rank) > 0 ? true:false;
     }

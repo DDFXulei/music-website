@@ -53,6 +53,7 @@ public interface SingerMapper {
      */
     int updateByPrimaryKey(Singer record);
     
+    
     int updateSingerMsg(Singer record);
 
     int updateSingerPic(Singer record);

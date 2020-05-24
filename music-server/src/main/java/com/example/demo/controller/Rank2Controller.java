@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.demo.domain.Rank;
+import com.example.demo.domain.Rank2;
 import com.example.demo.service.impl.RankServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @Controller
-public class RankController {
+public class Rank2Controller {
 
     @Autowired
     private RankServiceImpl rankService;
@@ -28,7 +28,7 @@ public class RankController {
         String consumerId = req.getParameter("consumerId").trim();
         String score = req.getParameter("score").trim();
 
-        Rank rank = new Rank();
+        Rank2 rank = new Rank2();
         rank.setSongListId(Long.parseLong(songListId));
         rank.setConsumerId(Long.parseLong(consumerId));
         rank.setScore(Integer.parseInt(score));

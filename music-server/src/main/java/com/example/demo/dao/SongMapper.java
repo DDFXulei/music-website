@@ -60,7 +60,7 @@ public interface SongMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Song record);
-
+    
     int updateSongMsg(Song record);
 
     int updateSongUrl(Song record);

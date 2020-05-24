@@ -51,6 +51,5 @@
 	<table tableName="PRODUCT_DETAIL_INFO" domainObjectName="ProductDetailInfo" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
 	<table tableName="PRODUCT_FEATURE_ADVANCE" domainObjectName="ProductFeatureAdvance" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
 	<table tableName="TRAFFIC_STATISTICS" domainObjectName="TrafficStatistics" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
- 
   </context>
 </generatorConfiguration>

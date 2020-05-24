@@ -87,10 +87,13 @@ public class ProductController {
 	//返回指定id的Product
 	@RequestMapping(value="/product/detail", method=RequestMethod.GET)
 	public Object productOfId(HttpServletRequest req) {
-		String id = req.getParameter("id");
-		return productService.productOfId(Integer.parseInt(id));
+		String id = req.getParameter("PRODUCT_ID");
+		return productService.productOfId(Long.parseLong(id));
 		
 	}
+	
+	
+	
 	
 	
 	

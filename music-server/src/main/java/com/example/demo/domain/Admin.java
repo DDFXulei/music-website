@@ -99,6 +99,7 @@ public class Admin {
         this.password = password == null ? null : password.trim();
     }
     
+    
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

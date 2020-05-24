@@ -61,11 +61,12 @@ public interface ProductMapper {
      */
     int updateByPrimaryKey(Product record);
     
+    
     List<Product> allProducts();
 
     List<Product> productOfProductId(Integer productId);
 
-    List<Product> productOfId(Integer id);
+    List<Product> productOfId(Long id);
 
     List<Product> productOfProductName(String name);
 }

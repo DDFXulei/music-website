@@ -46,7 +46,7 @@ public class ProductController {
 	
 	//添加产品
 	@ResponseBody
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="/product/add", method=RequestMethod.POST)
 	public Object addProduct(HttpServletRequest req) {
 		
 		JSONObject jsonObject = new JSONObject();
@@ -54,14 +54,12 @@ public class ProductController {
 		String productName = req.getParameter("productName").trim();
 		String productIntro = req.getParameter("productIntro").trim();
 		String productPic = req.getParameter("productPic").trim();
-		String productLyric = req.getParameter("productLyric").trim();
 		
 		Product product = new Product();
-		product.setProductId(Integer.parseInt(productId));
+		product.setProductId(Long.parseLong(productId));
 		product.setProductName(productName);
 		product.setProductIntro(productIntro);
 		product.setProductPic(productPic);
-		product.setProductLyric(productLyric);
 		
 		boolean res = productService.addProduct(product);
 		
@@ -87,10 +85,10 @@ public class ProductController {
 	
 	
 	//返回指定id的Product
-	@RequestMapping(value="/product", method=RequestMethod.GET)
+	@RequestMapping(value="/product/detail", method=RequestMethod.GET)
 	public Object productOfId(HttpServletRequest req) {
-		String productId = req.getParameter("productId");
-		return productService.productOfId(Integer.parseInt(productId));
+		String id = req.getParameter("id");
+		return productService.productOfId(Integer.parseInt(id));
 		
 	}
 	

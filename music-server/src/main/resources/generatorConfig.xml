@@ -46,6 +46,11 @@
     <table tableName="singer" domainObjectName="Singer" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
     <table tableName="song" domainObjectName="Song" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
     <table tableName="song_list" domainObjectName="SongList" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
-	<table tableName="product" domainObjectName="Product" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+	<table tableName="PRODUCT_MAIN" domainObjectName="Product" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+	<table tableName="PRODUCT_APP_ENV" domainObjectName="ProductAppEnv" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+	<table tableName="PRODUCT_DETAIL_INFO" domainObjectName="ProductDetailInfo" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+	<table tableName="PRODUCT_FEATURE_ADVANCE" domainObjectName="ProductFeatureAdvance" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+	<table tableName="TRAFFIC_STATISTICS" domainObjectName="TrafficStatistics" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+ 
   </context>
 </generatorConfiguration>

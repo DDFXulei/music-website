@@ -1,6 +1,5 @@
 package com.example.demo.dao;
 
-
 import java.util.List;
 
 import com.example.demo.domain.SongList;
@@ -61,6 +60,7 @@ public interface SongListMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(SongList record);
+    
     
     int updateSongListMsg(SongList record);
 

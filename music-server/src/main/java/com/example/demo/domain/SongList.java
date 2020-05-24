@@ -160,6 +160,4 @@ public class SongList {
     public void setIntroduction(String introduction) {
         this.introduction = introduction == null ? null : introduction.trim();
     }
-    
-    
 }

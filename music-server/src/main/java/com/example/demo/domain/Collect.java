@@ -197,6 +197,7 @@ public class Collect {
         this.createTime = createTime;
     }
     
+    
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

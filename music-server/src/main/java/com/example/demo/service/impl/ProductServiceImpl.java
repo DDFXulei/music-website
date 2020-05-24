@@ -22,25 +22,25 @@ public class ProductServiceImpl implements ProductService {
     }
     
 	@Override
-	public boolean addProduct(com.example.demo.domain.Product product) {
+	public boolean addProduct(Product product) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean updateProductMsg(com.example.demo.domain.Product product) {
+	public boolean updateProductMsg(Product product) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean updateProductUrl(com.example.demo.domain.Product product) {
+	public boolean updateProductUrl(Product product) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean updateProductPic(com.example.demo.domain.Product product) {
+	public boolean updateProductPic(Product product) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -52,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<com.example.demo.domain.Product> Product() {
+	public List<Product> Product() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -60,7 +60,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> productOfId(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return productMapper.productOfId(id);
 	}
 
 	@Override

@@ -141,10 +141,6 @@
 		select *
 		from song_list
 	</select>
-	<select id="allSongList" resultMap="ResultMapWithBLOBs">
-		select *
-		from song_list
-	</select>
 
 	<select id="likeTitle" resultMap="ResultMapWithBLOBs">
 		select *

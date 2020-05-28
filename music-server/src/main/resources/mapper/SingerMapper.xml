@@ -146,4 +146,28 @@
       introduction = #{introduction,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+   <update id="updateSingerPic" parameterType="com.example.demo.domain.Consumer" >
+    update singer
+    <set >
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <select id="allSinger" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from singer
+  </select>
+  <select id="singerOfName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select *
+    from singer
+    where name like #{name, jdbcType=VARCHAR}
+  </select>
+  <select id="singerOfSex" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select *
+    from singer
+    where sex = #{sex, jdbcType=INTEGER}
+  </select>
 </mapper>

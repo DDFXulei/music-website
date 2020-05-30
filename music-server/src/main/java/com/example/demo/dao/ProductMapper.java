@@ -64,9 +64,9 @@ public interface ProductMapper {
     
     List<Product> allProducts();
 
-    List<Product> productOfProductId(Integer productId);
+    List<Product> productOfId(Long productId);
 
-    List<Product> productOfId(Long id);
+	List<Product> productOfName(String productName);
 
-    List<Product> productOfProductName(String name);
+	List<Product> productOfType(Long productType);
 }

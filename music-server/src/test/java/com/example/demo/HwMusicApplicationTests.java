@@ -2,6 +2,8 @@ package com.example.demo;
 
 import com.example.demo.domain.Consumer;
 import com.example.demo.service.impl.ConsumerServiceImpl;
+import com.example.demo.service.impl.ProductServiceImpl;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,18 @@ import java.util.Date;
 public class HwMusicApplicationTests {
 
     @Autowired
+    private ProductServiceImpl productServiceImpl;
 //    private SongServiceImpl songService;
 //    private SingerServiceImpl singerService;
 //    private SongListServiceImpl songListService;
-    private ConsumerServiceImpl consumerService;
+//    private ConsumerServiceImpl consumerService;
 //    private RankServiceImpl rankService;
+    
+    @Test
+    public void testProduct() {
+    	String name = "干燥机";
+    	System.out.println(productServiceImpl.productOfName(name));
+    }
 
 //    @Test
 //    public void contextLoads() {
@@ -88,23 +97,23 @@ public class HwMusicApplicationTests {
 //    }
 
 //用户
-@Test
-public void consumerTest(){
-
-    Consumer consumer = new Consumer();
-    consumer.setUsername("xul");
-    consumer.setPassword("123");
-    consumer.setSex(new Byte("0"));
-    consumer.setPhoneNum("15852727967");
-    consumer.setEmail("22222@qq.com");
-    consumer.setBirth(new Date());
-    consumer.setIntroduction("");
-    consumer.setLocation("");
-    consumer.setAvator("/img/user.jpg");
-    consumer.setCreateTime(new Date());
-    consumer.setUpdateTime(new Date());
-    consumerService.addUser(consumer);
-}
+//@Test
+//public void consumerTest(){
+//
+//    Consumer consumer = new Consumer();
+//    consumer.setUsername("xul");
+//    consumer.setPassword("123");
+//    consumer.setSex(new Byte("0"));
+//    consumer.setPhoneNum("15852727967");
+//    consumer.setEmail("22222@qq.com");
+//    consumer.setBirth(new Date());
+//    consumer.setIntroduction("");
+//    consumer.setLocation("");
+//    consumer.setAvator("/img/user.jpg");
+//    consumer.setCreateTime(new Date());
+//    consumer.setUpdateTime(new Date());
+//    consumerService.addUser(consumer);
+//}
 //    @Test
 //    public void consumerTest2()
 //    {

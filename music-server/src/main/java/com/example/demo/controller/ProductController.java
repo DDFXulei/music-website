@@ -34,70 +34,73 @@ public class ProductController {
 
 	@Autowired
 	private ProductServiceImpl productService;
-	
+
 	@Configuration
-	public class MyPicConfig implements WebMvcConfigurer{
-		
+	public class MyPicConfig implements WebMvcConfigurer {
+
 		public void addResourceHandler(ResourceHandlerRegistry registry) {
-			registry.addResourceHandler("/img/productPic/**").addResourceLocations("file:D:/EclipseWorkSpace/music-website/music-server/img/productPic/");
+			registry.addResourceHandler("/img/productPic/**")
+					.addResourceLocations("file:D:/EclipseWorkSpace/music-website/music-server/img/productPic/");
 		}
 	}
-	
-	
-	//添加产品
+
+	// 添加产品
 	@ResponseBody
-	@RequestMapping(value="/product/add", method=RequestMethod.POST)
+	@RequestMapping(value = "/product/add", method = RequestMethod.POST)
 	public Object addProduct(HttpServletRequest req) {
-		
+
 		JSONObject jsonObject = new JSONObject();
 		String productId = req.getParameter("productId").trim();
 		String productName = req.getParameter("productName").trim();
 		String productIntro = req.getParameter("productIntro").trim();
 		String productPic = req.getParameter("productPic").trim();
-		
+
 		Product product = new Product();
 		product.setProductId(Long.parseLong(productId));
 		product.setProductName(productName);
 		product.setProductIntro(productIntro);
 		product.setProductPic(productPic);
-		
+
 		boolean res = productService.addProduct(product);
-		
-		if(res) {
+
+		if (res) {
 			jsonObject.put("code", 1);
-			jsonObject.put("msg","添加成功");
+			jsonObject.put("msg", "添加成功");
 			return jsonObject;
-		}else {
+		} else {
 			jsonObject.put("code", 0);
-			jsonObject.put("msg","添加失败");
+			jsonObject.put("msg", "添加失败");
 			return jsonObject;
 		}
-	
-		
+
 	}
-	
-	
-	//返回所有产品
-	@RequestMapping(value="/products",method=RequestMethod.GET)
+
+	// 返回所有产品
+	@RequestMapping(value = "/productList", method = RequestMethod.GET)
 	public Object allProduct() {
 		return productService.allProducts();
 	}
-	
-	
-	//返回指定id的Product
-	@RequestMapping(value="/product/detail", method=RequestMethod.GET)
+
+	// 返回指定id的Product
+	@RequestMapping(value = "/product/detail", method = RequestMethod.GET)
 	public Object productOfId(HttpServletRequest req) {
-		String id = req.getParameter("PRODUCT_ID");
+		String id = req.getParameter("productId");
 		return productService.productOfId(Long.parseLong(id));
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+//  返回指定标题对应的Product
+	@RequestMapping(value = "/productList/likeName/detail", method = RequestMethod.GET)
+	public Object productListOfName(HttpServletRequest req) {
+		String productName = req.getParameter("productName").trim();
+		return productService.productOfName('%' + productName + '%');
+	}
+
+//返回指定类型的歌单
+	@RequestMapping(value = "/productList/type/detail", method = RequestMethod.GET)
+	public Object songListOfStyle(HttpServletRequest req) {
+		String productType = req.getParameter("productType").trim();
+		return productService.productOfType(Long.parseLong(productType));
+	}
+
 }

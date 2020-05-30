@@ -46,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public boolean deleteSong(Integer id) {
+	public boolean deleteProduct(Long id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -64,9 +64,15 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> productOfName(String name) {
+	public List<Product> productOfName(String productName) {
 		// TODO Auto-generated method stub
-		return null;
+		return productMapper.productOfName(productName);
 	}
+
+	public List<Product> productOfType(Long productType) {
+		// TODO Auto-generated method stub
+		return productMapper.productOfType(productType);
+	}
+
 
 }

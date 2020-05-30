@@ -16,7 +16,7 @@ public interface ProductService {
 
     boolean updateProductPic(Product product);
 
-    boolean deleteSong(Integer id);
+    boolean deleteProduct(Long id);
     
     List<Product> allProducts();
 
@@ -25,5 +25,7 @@ public interface ProductService {
     List<Product> productOfId(Long id);
 
     List<Product> productOfName(String name);
+    
+    List<Product> productOfType(Long productType);
 
 }

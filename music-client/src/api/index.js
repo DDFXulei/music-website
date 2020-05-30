@@ -24,6 +24,18 @@ export const getSongListOfLikeTitle = (keywords) => get(`songList/likeTitle/deta
 export const getListSongOfSongId = (songListId) => get(`listSong/detail?songListId=${songListId}`)
 
 
+// =======================> 产品 API
+// 获取全部产品
+export const getProductList = () => get('productList')
+// 获取产品类型
+export const getProductListOfType = (type) => get(`productList/type/detail?productType=${type}`)
+// 返回标题包含文字的产品
+export const getProductListOfLikeName = (keywords) => get(`productList/likeName/detail?productName=${keywords}`)
+// 返回productId的产品
+export const getListProductOfProductId = (productId) => get(`productList/detail?productId=${productId}`)
+
+
+
 // =======================> 歌手 API
 // 返回所有歌手
 export const getAllSinger = () => get('singer')

@@ -10,7 +10,7 @@
       <span>{{musicName}}</span>
     </div>
     <ul class="navbar" ref="change">
-      <li :class="{active: item.name === activeName}" v-for="item in navMsg" :key="item.path" @click="goPage(item.path, item.name)">
+      <li :class="{active: item.name === activeName}" v-for="(item,index) in navMsg" :key="index" @click="goPage(item.path, item.name)">
         {{item.name}}
       </li>
       <li>

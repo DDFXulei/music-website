@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import configure from './configure'
 import user from './user'
 import song from './song'
+import product from './product'
 
 Vue.use(Vuex)
 
@@ -10,7 +11,8 @@ const store = new Vuex.Store({
   modules: {
     configure,
     user,
-    song
+    song,
+    product
   }
 })
 

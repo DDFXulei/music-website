@@ -33,6 +33,8 @@ export const getProductListOfType = (type) => get(`productList/type/detail?produ
 export const getProductListOfLikeName = (keywords) => get(`productList/likeName/detail?productName=${keywords}`)
 // 返回productId的产品
 export const getListProductOfProductId = (productId) => get(`productList/detail?productId=${productId}`)
+// 返回productId的适用环境图片
+export const getProductEnvOfProductId = (productId) => get(`productList/detail?productId=${productId}`)
 
 
 

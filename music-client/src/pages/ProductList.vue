@@ -6,7 +6,7 @@
           v-for="(item, index) in productType"
           :key="index"
           :class="{active: item.name === activeName}"
-          @click="handleChangeView(item.name)">
+          @click="handleChangeView(item.name,index)">
           {{item.name}}
         </li>
       </ul>
@@ -55,7 +55,7 @@ export default {
   },
   mounted () {
     this.productType = productType
-    this.handleChangeView('全部类别')
+    this.handleChangeView('全部类别', 0)
   },
   methods: {
     // 获取当前页
@@ -63,13 +63,13 @@ export default {
       this.currentPage = val
     },
     // 获取产品
-    handleChangeView: function (name) {
+    handleChangeView: function (name, index) {
       this.activeName = name
       this.albumDatas = []
       if (name === '全部类别') {
         this.getProductList(this.cur_page)
       } else {
-        this.getProductListOfType(name)
+        this.getProductListOfType(productType[index].type)
       }
     },
     // 获取全部产品
@@ -78,14 +78,15 @@ export default {
         .then(res => {
           this.currentPage = 1
           this.albumDatas = res
+          // console.log(this.albumDatas)
         })
         .catch(err => {
           console.log(err)
         })
     },
     // 通过类别获取产品
-    getProductListOfType (style) {
-      getProductListOfType(style)
+    getProductListOfType (productType) {
+      getProductListOfType(productType)
         .then(res => {
           this.currentPage = 1
           this.albumDatas = res

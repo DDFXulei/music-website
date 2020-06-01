@@ -12,6 +12,7 @@ import Search from '@/pages/Search'
 import Setting from '@/pages/Setting'
 import Lyric from '@/pages/Lyric'
 import ProductList from '@/pages/ProductList'
+import ProductDetail from '@/pages/ProductDetail'
 
 Vue.use(Router)
 
@@ -49,6 +50,11 @@ export default new Router({
       path: '/product-list',
       name: 'product-list',
       component: ProductList
+    },
+    {
+      path: '/product-detail/:productId',
+      name: 'product-detail',
+      component: ProductDetail
     },
     {
       path: '/my-music',

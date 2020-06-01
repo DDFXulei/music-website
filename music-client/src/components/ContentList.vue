@@ -2,15 +2,10 @@
   <div class="content-list">
     <ul class="section-content">
       <li class="content-item" v-for="(item, index) in contentList" :key="index">
-        <div class="kuo" @click="goAblum(item, item.name)">
-          <img class="item-img" :src="attachImageUrl(item.pic)" alt="">
-          <div class="mask"  @click="goAblum(item, item.name)">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-bofang"></use>
-            </svg>
-          </div>
+        <div class="kuo" @click="goDetail(item)">
+          <img class="item-img" :src="attachImageUrl(item.productPic)" alt="">
         </div>
-        <p class="item-name">{{item.name || item.title}}</p>
+        <p class="item-name">{{item.productName}}</p>
       </li>
     </ul>
   </div>
@@ -26,13 +21,20 @@ export default {
     'contentList'
   ],
   methods: {
-    goAblum (item, type) {
-      this.$store.commit('setTempList', item)
-      if (type) {
-        this.$router.push({path: `/singer-album/${item.id}`})
-      } else {
-        this.$router.push({path: `/song-list-album/${item.id}`})
-      }
+    goDetail (item) {
+      console.log(item.productId)
+      // this.$store.commit('setTempList', item)
+      this.$store.commit('setProductId', item.productId)
+      this.$store.commit('setProductType', item.productType)
+      this.$store.commit('setProductPic', item.productPic)
+      this.$store.commit('setProductName', item.productName)
+      this.$store.commit('setUpdateTime', item.updateTime)
+      this.$router.push({path: `/product-detail/${item.productId}`})
+      // if (type) {
+      //   this.$router.push({path: `/singer-album/${item.id}`})
+      // } else {
+      //   this.$router.push({path: `/song-list-album/${item.id}`})
+      // }
     }
   }
 }
@@ -53,7 +55,7 @@ export default {
   }
   .content-item {
     flex-flow: column wrap;
-    width: 18%;
+    width: 30%;
     margin: 20px 1%;
     overflow: hidden;
     border-radius: 6px;
@@ -66,35 +68,16 @@ export default {
     -webkit-box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.4);
     box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.4);
+    color: #0079A8;
+    font-weight: bold;
   }
   li:hover .item-img{
     transform: scale(1.1);
   }
+
   .item-img {
     width: 100%;
     transition: all 0.4s ease;
-  }
-  .kuo, .mask {
-    width: 100%;
-    padding-bottom: 100%;
-    height: 0;
-    overflow: hidden;
-  }
-  .mask{
-    position: absolute;
-    top:0;
-    background-color: rgba(52,47,41,.4);
-    transition:all .3s ease-in-out;
-    opacity: 0;
-    display: flex;
-    justify-content: center;
-  }
-  .mask > .icon {
-    position: absolute;
-    top: 40%
-  }
-  .mask:hover{
-    opacity: 1;
     cursor: pointer;
   }
   .item-name {

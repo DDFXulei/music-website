@@ -78,6 +78,7 @@ export default {
         .then(res => {
           // console.log('-----------获取登录信息---------------')
           if (res.code === 1) {
+            console.log("res.code:"+res.code)
             _this.$message({
               message: '登录成功',
               type: 'success'
@@ -91,6 +92,7 @@ export default {
             }, 2000)
           } else {
             _this.notify('用户名或密码错误', 'error')
+            console.log("res.code:"+res.code)
           }
         })
         .catch(failResponse => {})

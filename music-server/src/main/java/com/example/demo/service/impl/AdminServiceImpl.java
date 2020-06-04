@@ -8,12 +8,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminServiceImpl implements AdminService {
 
-    @Autowired
-    private AdminMapper adminMapper;
+	@Autowired
 
-    @Override
-    public boolean veritypasswd(String name, String password) {
+	private AdminMapper adminMapper;
 
-        return adminMapper.verifyPassword(name, password)>0?true:false;
-    }
+	@Override
+
+	public boolean veritypasswd(String name, String password) {
+
+		return adminMapper.verifyPassword(name, password) > 0 ? true : false;
+
+	}
 }

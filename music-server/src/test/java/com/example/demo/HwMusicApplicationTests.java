@@ -1,9 +1,12 @@
 package com.example.demo;
 
+import com.example.demo.dao.AdminMapper;
 import com.example.demo.domain.Consumer;
 import com.example.demo.service.impl.ConsumerServiceImpl;
 import com.example.demo.service.impl.ProductServiceImpl;
 
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.log4j.Log4jImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +26,13 @@ public class HwMusicApplicationTests {
 //    private SongListServiceImpl songListService;
 //    private ConsumerServiceImpl consumerService;
 //    private RankServiceImpl rankService;
-    
+    @Autowired
+    private AdminMapper adminMapper;
     @Test
     public void testProduct() {
-    	String name = "干燥机";
-    	System.out.println(productServiceImpl.productOfName(name));
+    	String name = "admin";
+    	String password = "123"; 	
+    	
     }
 
 //    @Test

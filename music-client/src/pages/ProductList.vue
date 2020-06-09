@@ -41,6 +41,7 @@ export default {
   data () {
     return {
       productType: [], // 产品导航栏类别
+      typeName: '',
       activeName: '全部类别',
       pageSize: 15, // 页数
       currentPage: 1, // 当前页
@@ -55,6 +56,7 @@ export default {
   },
   mounted () {
     this.productType = productType
+    this.typeName = this.productType
     this.handleChangeView('全部类别', 0)
   },
   methods: {

@@ -74,7 +74,7 @@ export default {
       }, false)
       // 点击“菜单”内部时，阻止事件冒泡。(这样点击内部时，菜单不会关闭)
       document.querySelector('.menu').addEventListener('click', function (e) {
-       // e.stopPropagation()
+        // e.stopPropagation()
       }, false)
       document.addEventListener('click', function () {
         document.querySelector('.menu').classList.remove('show')

@@ -6,24 +6,18 @@
     <hr>
     <ul>
       <li class="list-title">
-        <div class="song-item">
+        <div class="product-item">
           <span class="item-index"></span>
-          <span class="item-title">歌曲名</span>
-          <span class="item-name">艺人</span>
-          <span class="item-intro">专辑</span>
+          <span class="item-title">产品名称</span>
+          <span class="item-intro">产品简介</span>
         </div>
       </li>
-      <li class="list-content" v-for="(item, index) in songList" :key="index">
-        <div class="song-item" :class="{'is-play': id === item.id}"  @click="toplay(item.id, item.url, item.pic, index, item.name, item.lyric)">
-          <span class="item-index">
-            <span v-if="id !== item.id">{{index + 1}}</span>
-            <svg v-if="id === item.id" class="icon" aria-hidden="true">
-              <use xlink:href="#icon-yinliang"></use>
-            </svg>
-          </span>
-          <span class="item-title">{{replaceFName(item.name)}}</span>
-          <span class="item-name">{{replaceLName(item.name)}}</span>
-          <span class="item-intro">{{item.introduction}}</span>
+      <li class="list-content" v-for="(item, index) in productList" :key="index">
+        <div class="product-item" @click="toplay()">
+          <span class="item-index">{{index+1}}</span>
+          <span class="item-title">{{item.productName}}</span>
+          <span class="item-name">{{item.productTitle}}</span>
+          <span class="item-intro">{{item.productIntro}}</span>
         </div>
       </li>
     </ul>
@@ -38,11 +32,11 @@ export default {
   name: 'album-content',
   mixins: [mixin],
   props: [
-    'songList'
+    'productList'
   ],
   computed: {
     ...mapGetters([
-      'id' // 音乐ID
+      'productId' // 产品ID
     ])
   }
 }
@@ -75,7 +69,7 @@ export default {
   .list-content {
     cursor: pointer;
   }
-  .song-item {
+  .product-item {
     display: flex;
     flex-wrap: nowrap;
     overflow: hidden;
@@ -95,10 +89,6 @@ export default {
   .item-intro {
     width: 45%;
   }
-  .is-play{
-    color: #30a4fc;
-    font-weight: bold;
-   }
   .icon {
     width: 1.5em;
     height: 1.5em;

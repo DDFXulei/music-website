@@ -1,4 +1,4 @@
-import { getSongOfSingerName, getCollectionOfUser } from '../api/index'
+import { getSongOfSingerName, getCollectionOfUser, getProductListOfLikeName } from '../api/index'
 import { mapGetters } from 'vuex'
 
 export const mixin = {
@@ -96,7 +96,7 @@ export const mixin = {
     getSong () {
       if (!this.$route.query.keywords) {
         this.$store.commit('setListOfSongs', [])
-        this.notify('您输入内容为空', 'warning')
+        this.notify('您输入内容为空', 'error')
       } else {
         getSongOfSingerName(this.$route.query.keywords)
           .then(res => {
@@ -105,6 +105,27 @@ export const mixin = {
               this.notify('系统暂无该歌曲', 'warning')
             } else {
               this.$store.commit('setListOfSongs', res)
+            }
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
+    },
+    // 搜索产品
+    getProducts () {
+      if (!this.$route.query.keywords) {
+        this.$store.commit('setListOfProducts', [])
+        this.notify('您的搜索内容为空，请重新输入', 'error')
+      } else {
+        getProductListOfLikeName(this.$route.query.keywords)
+          .then(res => {
+            if (!res.length) {
+              this.$store.commit('setListOfProducts', [])
+              this.notify('系统暂无该类产品', 'warning')
+            } else {
+              this.$store.commit('setListOfProducts', res)
+              console.log(res)
             }
           })
           .catch(err => {

@@ -3,22 +3,16 @@ const navMsg = [{
   name: '首页',
   path: '/'
 }, {
-  name: '歌单',
-  path: '/song-list'
-}, {
-  name: '歌手',
-  path: '/singer'
-}, {
   name: '产品中心',
   path: '/product-list'
 }, {
   name: '关于我们',
   path: '/about-us'
 }, {
-  name: '新闻中心',
+  name: '',
   path: '/my-music'
 }, {
-  name: '我的收藏',
+  name: '',
   path: '/my-music'
 }]
 

@@ -49,7 +49,10 @@ export default new Router({
     {
       path: '/product-list',
       name: 'product-list',
-      component: ProductList
+      component: ProductList,
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/product-detail/:productId',
@@ -92,7 +95,17 @@ export default new Router({
       component: Setting
     }
   ],
+  mode: 'history',
   scrollBehavior (to, from, savedPosition) {
-    return { x: 0, y: 0 }
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return {x: 0, y: 0}
+    }
   }
 })
+
+// const originalPush = Router.prototype.push
+// Router.prototype.push = function push (location) {
+//   return originalPush.call(this, location).catch(err => err)
+// }

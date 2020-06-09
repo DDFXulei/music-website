@@ -72,7 +72,7 @@ export default {
     font-weight: bold;
   }
   li:hover .item-img{
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 
   .item-img {

@@ -1,30 +1,34 @@
 <template>
   <div class="search-products">
-    <album-content :songList="listOfSongs"></album-content>
+    <content-list :contentList="listOfProducts"></content-list>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import { mixin } from '../../mixins'
-import AlbumContent from '../AlbumContent'
+import ContentList from '../ContentList'
 
 export default {
-  name: 'search-songs',
+  name: 'search-products',
   components: {
-    AlbumContent
+    ContentList
   },
   mixins: [mixin],
   computed: {
     ...mapGetters([
-      'listOfSongs' // 存放的音乐
-    ]),
-    data () {
-      return 1
+      'listOfProducts' // 存放的音乐
+    ])
+  },
+  data () {
+    return {
+      pageSize: 15, // 页数
+      currentPage: 1,
+      listLength: 0
     }
   },
   mounted () {
-    this.getSong()
+    this.getProducts()
   }
 }
 </script>

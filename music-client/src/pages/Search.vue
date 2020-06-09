@@ -4,8 +4,7 @@
     <div class="my-body">
       <div class="content">
         <nav class="searchList-nav" ref="change">
-          <span :class="{isActive: toggle === 'Songs'}" @click="handleChangeView('Songs', 0)">歌曲</span>
-          <span :class="{isActive: toggle === 'SongLists'}" @click="handleChangeView('SongLists', 1)">歌单</span>
+          <span :class="{isActive: toggle === 'Products'}" @click="handleChangeView('Products', 0)">产品中心</span>
         </nav>
         <component :is="currentView"></component>
       </div>
@@ -14,22 +13,20 @@
 </template>
 
 <script>
-import searchSongs from '../components/search/SearchSongs'
-import searchSongLists from '../components/search/SearchSongLists'
+import searchProducts from '../components/search/SearchProducts'
 import { mapGetters } from 'vuex'
 import { mixin } from '../mixins'
 
 export default {
   name: 'search',
   components: {
-    searchSongs,
-    searchSongLists
+    searchProducts
   },
   mixins: [mixin],
   data () {
     return {
-      toggle: 'Songs',
-      currentView: 'searchSongs'
+      toggle: 'Products',
+      currentView: 'searchProducts'
     }
   },
   computed: {
@@ -39,7 +36,8 @@ export default {
   },
   watch: {
     searchword: function () {
-      this.getSong()
+      // console.log('触发了watch')
+      this.getProducts()
     }
   },
   methods: {
@@ -50,6 +48,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>
@@ -86,7 +85,7 @@ export default {
 }
 
 .isActive {
-  font-weight: 600;
+  font-weight: 300;
   border-bottom:5px solid black;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div class="scroll-top" @click="returnTop">
     <div class="box-in"></div>
+    <div class="box-in"></div>
   </div>
 </template>
 

@@ -1,14 +1,16 @@
 <template>
-  <div class="content-list">
-    <ul class="section-content">
-      <li class="content-item" v-for="(item, index) in contentList" :key="index">
-        <div class="kuo" @click="goDetail(item)">
-          <img class="item-img" :src="attachImageUrl(item.productPic)" alt="">
-        </div>
-        <p class="item-name">{{item.productName}}</p>
-      </li>
-    </ul>
-  </div>
+  <transition name="el-fade-in">
+    <div class="content-list">
+        <ul class="section-content">
+          <li class="content-item" v-for="(item, index) in contentList" :key="index">
+            <div class="kuo" @click="goDetail(item)">
+              <img class="item-img" :src="attachImageUrl(item.productPic)" alt="">
+            </div>
+            <p class="item-name">{{item.productName}}</p>
+          </li>
+        </ul>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -41,6 +43,7 @@ export default {
 </script>
 
 <style scoped>
+
   div, ul, li, p{
     box-sizing: border-box;
   }

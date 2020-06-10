@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <song-audio/>
     <the-header/>
     <the-aside></the-aside>
     <keep-alive>

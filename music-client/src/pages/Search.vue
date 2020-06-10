@@ -4,7 +4,7 @@
     <div class="my-body">
       <div class="content">
         <nav class="searchList-nav" ref="change">
-          <span :class="{isActive: toggle === 'Products'}" @click="handleChangeView('Products', 0)">产品中心</span>
+          <span :class="{isActive: toggle === 'Products'}" @click="handleChangeView('Products', 0)">产品列表</span>
         </nav>
         <component :is="currentView"></component>
       </div>

@@ -1,5 +1,6 @@
 import { getSongOfSingerName, getCollectionOfUser, getProductListOfLikeName } from '../api/index'
 import { mapGetters } from 'vuex'
+import { Loading } from 'element-ui'
 
 export const mixin = {
   computed: {
@@ -112,20 +113,40 @@ export const mixin = {
           })
       }
     },
+    openFullScreen2 () {
+      const loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      })
+      setTimeout(() => {
+        loading.close()
+      }, 2000)
+    },
     // 搜索产品
     getProducts () {
+      const loading = Loading.service({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      })
       if (!this.$route.query.keywords) {
         this.$store.commit('setListOfProducts', [])
         this.notify('您的搜索内容为空，请重新输入', 'error')
+        loading.close()
       } else {
         getProductListOfLikeName(this.$route.query.keywords)
           .then(res => {
             if (!res.length) {
               this.$store.commit('setListOfProducts', [])
               this.notify('系统暂无该类产品', 'warning')
+              loading.close()
             } else {
               this.$store.commit('setListOfProducts', res)
               console.log(res)
+              setTimeout(() => loading.close(), 500)
             }
           })
           .catch(err => {

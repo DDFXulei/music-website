@@ -17,15 +17,8 @@ export default {
   mixins: [mixin],
   computed: {
     ...mapGetters([
-      'listOfProducts' // 存放的音乐
+      'listOfProducts' // 存放的产品
     ])
-  },
-  data () {
-    return {
-      pageSize: 15, // 页数
-      currentPage: 1,
-      listLength: 0
-    }
   },
   mounted () {
     this.getProducts()

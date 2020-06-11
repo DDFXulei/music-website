@@ -13,6 +13,7 @@ import Setting from '@/pages/Setting'
 import Lyric from '@/pages/Lyric'
 import ProductList from '@/pages/ProductList'
 import ProductDetail from '@/pages/ProductDetail'
+import LoseConnect from '@/pages/LoseConnect'
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ export default new Router({
     {
       path: '/404',
       component: resolve => require(['../pages/404.vue'], resolve)
+    },
+    {
+      path: '/lose-connect',
+      name: 'lose-connect',
+      component: LoseConnect
     },
     {
       path: '/login-in',

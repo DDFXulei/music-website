@@ -36,7 +36,6 @@ export default {
   },
   watch: {
     searchword: function () {
-      // console.log('触发了watch')
       this.getProducts()
     }
   },

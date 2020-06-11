@@ -146,11 +146,14 @@ export const mixin = {
             } else {
               this.$store.commit('setListOfProducts', res)
               console.log(res)
-              setTimeout(() => loading.close(), 500)
+              loading.close()
             }
           })
           .catch(err => {
             console.log(err)
+            setTimeout(() => loading.close(),500)
+            this.$router.push({path: '/lose-connect'})
+            
           })
       }
     }

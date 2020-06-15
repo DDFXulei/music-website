@@ -28,6 +28,11 @@ export default new Router({
       component: resolve => require(['../pages/404.vue'], resolve)
     },
     {
+      path: '/error',
+      name: 'Error',
+      component: () => import('../pages/Error.vue')
+    },
+    {
       path: '/lose-connect',
       name: 'lose-connect',
       component: LoseConnect

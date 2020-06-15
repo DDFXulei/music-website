@@ -1,44 +1,21 @@
 <template>
-  <div class="error-page">
-    <div class="error-code" >404,找不到此页面,系统将在{{seconds}}s后返回主页</div>
-  </div>
+    <div class="error-page">
+      <div class="error-code" >404,找不到此页面,<a @click="goHome">点我返回</a></div>
+    </div>
 </template>
 
 <script>
 export default {
-  date() {
+  date () {
     return {
-      timer: '',
-      seconds: ''
+      count: '',
+      timer: ''
     }
   },
-  created() {
-    this.seconds = 5
-    console.log(this.seconds)
-    // this.timer = setInterval(
-    //   () => this.reduceNum, 1000
-    // )
-    // new Promise(function(resolve){
-    //   setInterval(() => this.timer,1000)
-    //   clearInterval()
-    // }).then(
-    //   this.$router.push({path: '/home'})
-    // )
-  },
   methods: {
-    reduceNum () {
-        if(this.seconds > 0 ){
-        this.seconds--
-        console.log(this.seconds)
-        } else {
-          return false
-        }
-      }
-    
-  },
-  mounted() {
-    setInterval(this.reduceNum,1000)
-    this.$router.push({path: '/home'})
+    goHome () {
+      this.$router.go(-1)
+    }
   }
 }
 
@@ -60,5 +37,9 @@ export default {
   font-size: 20px;
   font-weight: bolder;
   color: #95d2f6;
+}
+a{
+  cursor: pointer;
+  text-decoration: underline;
 }
 </style>

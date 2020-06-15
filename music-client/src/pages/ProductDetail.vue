@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="product-info">
                     <div class="pic">
-                        <img :src=attachImageUrl(pic)>     
+                        <img :src=attachImageUrl(pic)>
                     </div>
                     <div class="text">
                         <div class="bt">{{productName}}</div>
@@ -12,7 +12,7 @@
                             <p>配置高品质部件的PHCL(E)压缩热吸附式干燥机，可提供洁净和干燥的空气，从而延长您设备的使用寿命，全程保护您的产品。压缩热吸附式干燥机使用压缩机高温气体，脱附干燥剂中的水分；冷吹时，使用冷却后的压缩空气冷却干燥剂，全程没有压缩空气排放。</p><p>PHCL(E)吸附式干燥机，双塔结构，塔内装填干燥剂，冷却器翅片式，内置分离结构，结构紧凑压损低。有多种可选项可灵活组合。</p><p>Purelogic智能控制器，温度参与控制，可选露点控制，优化运行成本。监控干燥机重要运行参数。</p>
                         </div>
                         <div class="tedian">
-                            <div class="left">                             
+                            <div class="left">
                                 <p>压力露点：0~-40℃</p><p>入口温度：90-130℃</p><p>工作压力： 4.5-10 barg</p><p>平均耗气量：0%</p><p>电源： 220V/1PH/50HZ</p><p>双塔结构</p><p>Purelogic控制器</p>
                             </div>
                             <div class="right">
@@ -28,7 +28,7 @@
             <div class="container">
                 <div class="product-info">
                     <div class="title">产品特点和优势</div>
-                    <div class="list">                      
+                    <div class="list">
                         <ul class=" list-paddingleft-2">
                             <li>
                                 <div class="box">
@@ -59,7 +59,7 @@
                                     <div class="jsh">配有高温保护装置和低功率密度电加热器，寿命长，低风险</div>
                                 </div>
                             </li>
-                        </ul>                                        
+                        </ul>                                 
                     </div>
                 </div>
 
@@ -70,8 +70,8 @@
             <div class="container">
                 <div class="two">
                     <div class="title">技术参数</div>
-                    <div class="jsh">                    
-                        <p><img :src=attachImageUrl(pic)></p>  
+                    <div class="jsh">
+                        <p><img :src=attachImageUrl(pic)></p>
                     </div>
                 </div>
             </div>
@@ -163,7 +163,7 @@ export default {
             display: inline-block;
         }
         img{
-            width: 90%;
+            width: 80%;
         }
         .product-show{
             padding: 115px 0 0 0;
@@ -184,9 +184,6 @@ export default {
 
         .product-info{
             float: left;
-            padding: 0;
-        }
-        .product-show .product-info, .product-center .product-info, .related-case .related-info {
             padding: 0;
         }
         .product-show .text {
@@ -235,7 +232,7 @@ export default {
             background: #93D2F8;
         }
         .product-center {
-            padding: 72px 0 73px 0;
+            padding: 15px 0 15px 0;
             overflow: hidden;
             background: #93D2F8;
         }
@@ -249,7 +246,7 @@ export default {
         .product-center .title {
             font-size: 30px;
             color: #fff;
-            margin-bottom: 52px;
+            margin:0 0 30px 80px;
         }
         .product-center .list {
             margin: 0 auto;
@@ -266,7 +263,7 @@ export default {
             text-align: left;
             padding: 0 43px;
             vertical-align: top;
-            margin-bottom: 75px;
+            margin-bottom: 45px;
         }
         .product-center .list ul li .bt {
             font-size: 24px;

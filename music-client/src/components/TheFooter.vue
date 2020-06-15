@@ -14,7 +14,7 @@ export default {
       list: [
         `关于 | 帮助 | 条款 | 反馈`,
         `Copyright © 2020`,
-        `Designed by Xulei`
+        `Designed by TopAir`
       ]
     }
   }
@@ -24,13 +24,13 @@ export default {
 <style scoped>
 .the-footer{
   width: 100%;
-  height: 180px;
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content:center;
   flex-direction: column;
   background-color: #93D2F8;
-  color: white; 
+  color: white;
 }
 
 .the-footer p {

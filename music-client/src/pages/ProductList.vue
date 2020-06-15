@@ -113,7 +113,9 @@ export default {
   width: 100%;
   padding: 0 40px;
 }
-
+.product-list-header ul{
+  padding-left: 8%;
+}
 li {
   display: inline-block;
   line-height: 40px;

@@ -1,5 +1,4 @@
 <template>
-  <transition name="el-fade-in">
     <div class="content-list">
         <ul class="section-content">
           <li class="content-item" v-for="(item, index) in contentList" :key="index">
@@ -10,7 +9,6 @@
           </li>
         </ul>
     </div>
-  </transition>
 </template>
 
 <script>
@@ -51,6 +49,9 @@ export default {
     min-height: 500px;
     padding: 0 20px;
   }
+  ul{
+    padding-left: 15%;
+  }
   .section-content {
     display: flex;
     flex-wrap: wrap;
@@ -58,7 +59,7 @@ export default {
   }
   .content-item {
     flex-flow: column wrap;
-    width: 30%;
+    width: 20%;
     margin: 20px 1%;
     overflow: hidden;
     border-radius: 6px;

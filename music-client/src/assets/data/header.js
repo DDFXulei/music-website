@@ -17,13 +17,13 @@ const navMsg = [{
 }]
 
 // 右侧导航栏
-const loginMsg = [{
-  name: '登录',
-  path: '/login-in'
-}, {
-  name: '注册',
-  path: '/login-up'
-}]
+// const loginMsg = [{
+//   name: '登录',
+//   path: '/login-in'
+// }, {
+//   name: '注册',
+//   path: '/login-up'
+// }]
 
 // 用户下拉菜单项
 const menuList = [{
@@ -36,6 +36,6 @@ const menuList = [{
 
 export {
   navMsg,
-  loginMsg,
+  // loginMsg,
   menuList
 }

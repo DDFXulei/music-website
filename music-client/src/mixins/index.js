@@ -142,18 +142,24 @@ export const mixin = {
             if (!res.length) {
               this.$store.commit('setListOfProducts', [])
               this.notify('系统暂无该类产品', 'warning')
-              loading.close()
+              setTimeout(() => loading.close(), 500)
+              // this.$router.go(-1)
+              setTimeout(() => {
+                this.notify('系统自动返回产品中心', 'warning')
+                this.$router.push({path: '/product-list'})
+              }, 3000)
             } else {
               this.$store.commit('setListOfProducts', res)
               console.log(res)
-              loading.close()
+              setTimeout(() => loading.close(), 500)
             }
           })
           .catch(err => {
             console.log(err)
-            setTimeout(() => loading.close(),500)
-            this.$router.push({path: '/lose-connect'})
-            
+            setTimeout(() => {
+              loading.close()
+              this.$router.push({path: '/error'})
+            }, 2000)
           })
       }
     }

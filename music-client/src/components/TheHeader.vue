@@ -3,11 +3,8 @@
     <!--图标-->
     <div class="head-logo" @click="goHome">
       <div class="logo-hd">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-erji"></use>
-        </svg>
+        <img src="@/assets/img/swiper/log.jpg" alt="">
       </div>
-      <span>{{musicName}}</span>
     </div>
     <ul class="navbar" ref="change">
       <li :class="{active: item.name === activeName}" v-for="(item,index) in navMsg" :key="index" @click="goPage(item.path, item.name)">
@@ -17,28 +14,27 @@
         <div class="head-search">
           <input type="text" placeholder="搜索产品" @keyup.enter="goSearch()" v-model="keywords">
           <div class="search-btn"  @click="goSearch()" >
-            <svg class="icon" aria-hidden="true">
+            <!-- <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-sousuo"></use>
-            </svg>
+            </svg> -->
+            <el-button type="primary" icon="el-icon-search">搜索</el-button>
           </div>
         </div>
       </li>
-      <li v-if="!loginIn" :class="{active: item.name === activeName}" v-for="item in loginMsg" :key="item.type" @click="goPage(item.path, item.name)">{{item.name}}</li>
+      <!-- <li v-if="!loginIn" :class="{active: item.name === activeName}" v-for="item in loginMsg" :key="item.type" @click="goPage(item.path, item.name)">{{item.name}}</li> -->
     </ul>
     <!--用户-->
     <ul class="menu">
       <li v-for="(item, index) in menuList" :key="index" @click="goMenuList(item.path)">{{item.name}}</li>
     </ul>
-    <div id="user" @click="show()" v-if="loginIn">
-      <img :src=attachImageUrl(avator) alt="">
-    </div>
+
   </div>
 </template>
 
 <script>
 import { mixin } from '../mixins'
 import { mapGetters } from 'vuex'
-import { navMsg, loginMsg, menuList } from '../assets/data/header'
+import { navMsg, menuList } from '../assets/data/header'
 
 export default {
   name: 'the-header',
@@ -47,7 +43,6 @@ export default {
     return {
       musicName: 'Top-Air',
       navMsg: [], // 左侧导航栏
-      loginMsg: [], // 右侧导航栏
       menuList: [], // 用户下拉菜单项
       keywords: ''
     }
@@ -63,23 +58,10 @@ export default {
   },
   created () {
     this.navMsg = navMsg
-    this.loginMsg = loginMsg
+    // this.loginMsg = loginMsg
     this.menuList = menuList
   },
   methods: {
-    show () {
-      document.querySelector('#user').addEventListener('click', function (e) {
-        document.querySelector('.menu').classList.add('show')
-        e.stopPropagation()// 关键在于阻止冒泡
-      }, false)
-      // 点击“菜单”内部时，阻止事件冒泡。(这样点击内部时，菜单不会关闭)
-      document.querySelector('.menu').addEventListener('click', function (e) {
-        // e.stopPropagation()
-      }, false)
-      document.addEventListener('click', function () {
-        document.querySelector('.menu').classList.remove('show')
-      }, false)
-    },
     goHome () {
       this.$router.push({path: '/'})
     },
@@ -125,13 +107,17 @@ export default {
 }
 
 .head-logo {
-  width: 150px;
+  width: 300px;
   line-height: 80px;
   font-size: 28px;
   font-weight: bold;
   margin-left: 90px;
   display: inline-block;
   cursor: pointer;
+}
+.head-logo img{
+  width: 340px;
+
 }
 
 .logo-hd{
@@ -201,26 +187,6 @@ input:focus {
   font-size: 1.5em;
 }
 
-/*用户*/
-#user {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
-  margin: 15px;
-  position: absolute;
-  right: 150px;
-  display: inline-block;
-}
-
-#user:hover {
-  cursor: pointer;
-}
-
-#user img {
-  width: 100%;
-}
-
 .menu {
   display: none;
   background-color: #fff;
@@ -234,9 +200,8 @@ input:focus {
   text-align: center;
 }
 
-.menu li:hover{
-  background-color: #95d2f6;
-  color: white;
+.navbar li:hover{
+  color: #95d2f6;
 }
 
 .menu :nth-child(1):before {

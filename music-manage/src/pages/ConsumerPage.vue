@@ -352,6 +352,7 @@ export default {
       this.currentPage = val
     },
     uploadUrl (id) {
+      // console.log(this.$store.state.HOST)
       return `${this.$store.state.HOST}/user/avatar/update?id=${id}`
     },
     // 获取用户信息

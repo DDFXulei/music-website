@@ -42,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public boolean updateProductPic(Product product) {
 		// TODO Auto-generated method stub
-		return false;
+		return productMapper.updateProductPic(product) >0 ?true:false;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import com.example.demo.domain.Consumer;
 import com.example.demo.service.ConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class ConsumerServiceImpl implements ConsumerService {
 	}
 
 	@Override
-
+	@Transactional
 	public boolean updateUserAvator(Consumer consumer) {
 
 		return consumerMapper.updateUserAvator(consumer) > 0 ? true : false;

@@ -61,6 +61,7 @@ public interface ProductMapper {
      */
     int updateByPrimaryKey(Product record);
     
+    int updateProductPic(Product product);
     
     List<Product> allProducts();
 

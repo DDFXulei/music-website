@@ -36,7 +36,6 @@ export const updateCommentMsg = (params) => post(`comment/update`, params)
 // 删除评论
 export const deleteComment = (id) => get(`comment/delete?id=${id}`)
 
-
 // =======================> 歌手 API
 // 返回所有歌手
 export const getAllSinger = () => get(`singer`)
@@ -81,3 +80,9 @@ export const setListSong = (params) => post(`ListSong/add`, params)
 export const getListSongOfSongId = (songListId) => get(`listSong/detail?songListId=${songListId}`)
 // 删除歌单里的歌曲
 export const deleteListSong = (songId) => get(`ListSong/delete?songId=${songId}`)
+
+
+//=======================> 产品API
+export const getProductList = () => get('productList')
+// 返回指定歌手ID的歌曲
+export const getProductOfProductId = (id) => get(`/product/detail?productId=${id}`)

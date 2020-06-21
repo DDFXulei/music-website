@@ -11,11 +11,11 @@
         <el-table-column label="产品图片" width="110" align="center">
           <template slot-scope="scope">
             <div class="product-img">
-              <img :src="getUrl(scope.row.pic)" alt="" style="width: 100%;"/>
+              <img :src="getUrl(scope.row.productPic)" alt="" style="width: 100%;"/>
             </div>
             <el-upload
               class="upload-demo"
-              :action="uploadUrl(scope.row.id)"
+              :action="uploadUrl(scope.row.productId)"
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload"
@@ -24,7 +24,7 @@
             </el-upload>
           </template>
         </el-table-column>
-                <el-table-column label="技术参数图片" width="110" align="center">
+        <!-- <el-table-column label="技术参数图片" width="110" align="center">
           <template slot-scope="scope">
             <div class="product-img">
               <img :src="getUrl(scope.row.pic)" alt="" style="width: 100%;"/>
@@ -39,33 +39,33 @@
               <el-button size="mini">更新图片</el-button>
             </el-upload>
           </template>
-        </el-table-column>
-        <el-table-column prop="name" label="产品名称" width="120" align="center"></el-table-column>
+        </el-table-column> -->
+        <el-table-column prop="productName" label="产品名称" width="120" align="center"></el-table-column>
         <el-table-column label="产品类别" width="120" align="center">
           <template slot-scope="scope">
-            <div>{{scope.row.sex}}</div>
+            <div>{{scope.row.productType}}</div>
           </template>
         </el-table-column>
         <el-table-column label="产品标题" width="120" align="center">
           <template slot-scope="scope">
-              <div>{{scope.row.birth}}</div>
+            <p style="height: 100px; overflow: scroll">{{ scope.row.productTitle }}</p>
           </template>
         </el-table-column>
-        <el-table-column prop="location" label="产品简介" width="100" align="center"></el-table-column>
+        <!-- <el-table-column prop="productTitle" label="产品简介" width="100" align="center"></el-table-column> -->
         <el-table-column label="产品简介">
           <template slot-scope="scope">
-            <p style="height: 100px; overflow: scroll">{{ scope.row.introduction }}</p>
+            <p style="height: 100px; overflow: scroll">{{ scope.row.productIntro }}</p>
           </template>
         </el-table-column>
         <el-table-column label="参数管理" width="110" align="center">
           <template slot-scope="scope">
-            <el-button size="mini" @click="songEdit(scope.row.id, scope.row.name)">参数管理</el-button>
+            <el-button size="mini" @click="productEdit(scope.row.productId, scope.row.productName)">参数管理</el-button>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="150" align="center">
           <template slot-scope="scope">
             <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
+            <el-button size="mini" type="danger" @click="handleDelete(scope.row.productId)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -164,7 +164,7 @@
 
 <script>
 import { mixin } from '../mixins'
-import { setSinger, getAllSinger, updateSingerMsg, deleteSinger } from '../api/index'
+import { setSinger, getProductList, updateSingerMsg, deleteSinger } from '../api/index'
 
 export default {
   name: 'singer-page',
@@ -258,14 +258,15 @@ export default {
         })
       this.centerDialogVisible = false
     },
-    // 获取歌手
+    // 获取产品
     getData () {
       this.tableData = []
       this.tempDate = []
-      getAllSinger().then(res => {
+      getProductList().then(res => {
         this.tableData = res
         this.tempDate = res
         this.currentPage = 1
+        console.log(this.tableData)
       })
     },
     // 编辑
@@ -325,8 +326,8 @@ export default {
         })
       this.delVisible = false
     },
-    songEdit (id, name) {
-      this.$router.push({path: `/song`, query: {id: id, name: name}})
+    productEdit (productId, productName) {
+      this.$router.push({path: `/param`, query: {productId: productId, productName: productName}})
     }
   }
 }

@@ -103,20 +103,20 @@ drop table if exists TRAFFIC_STATISTICS;
 /*==============================================================*/
 create table PRODUCT_APP_ENV
 (
-   ID                   bigint not null,
+   ID                   bigint not null AUTO_INCREMENT,
    PRODUCT_ID           bigint,
    APP_ENV              varchar(255),
    CREATE_TIME          datetime,
    UPDATE_TIME          datetime,
    primary key (ID)
-);
+);ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*==============================================================*/
 /* Table: PRODUCT_DETAIL_INFO                                   */
 /*==============================================================*/
 create table PRODUCT_DETAIL_INFO
 (
-   ID                   bigint not null,
+   ID                   bigint not null AUTO_INCREMENT,
    PRODUCT_ID           bigint,
    PARAM_ID             bigint,
    PARAM_NAME           varchar(50),
@@ -124,28 +124,28 @@ create table PRODUCT_DETAIL_INFO
    CREATE_TIME          datetime,
    UPDATE_TIME          datetime,
    primary key (ID)
-);
+);ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*==============================================================*/
 /* Table: PRODUCT_FEATURE_ADVANCE                               */
 /*==============================================================*/
 create table PRODUCT_FEATURE_ADVANCE
 (
-   ID                   bigint not null,
+   ID                   bigint not null AUTO_INCREMENT,
    PRODUCT_ID           bigint,
    TITLE                varchar(50),
    DETAIL               varchar(255),
    CREATE_TIME          datetime,
    UPDATE_TIME          datetime,
    primary key (ID)
-);
+);ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*==============================================================*/
 /* Table: PRODUCT_MAIN                                          */
 /*==============================================================*/
 create table PRODUCT_MAIN
 (
-   PRODUCT_ID           bigint not null,
+   PRODUCT_ID           bigint not null AUTO_INCREMENT,
    PRODUCT_TYPE         int,
    PRODUCT_NAME         varchar(50),
    PRODUCT_TITLE        varchar(255),
@@ -156,34 +156,32 @@ create table PRODUCT_MAIN
    PRODUCT_FEATURE_ID   varchar(255),
    PRODUCT_PARAM        varchar(255),
    primary key (PRODUCT_ID)
-);
+);ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*==============================================================*/
 /* Table: PRODUCT_TYPE                                          */
 /*==============================================================*/
 create table PRODUCT_TYPE
 (
-   id                   bigint not null,
-   PRODUCT_ID           bigint,
-   PRODUCT_TYPE_ID      bigint,
-   PRODUCT_TYPE         varchar(50),
+   PRODUCT_TYPE_ID      bigint not null AUTO_INCREMENT,
+   PRODUCT_TYPE_NAME    varchar(50),
    CREATE_TIME          datetime,
    UPDATE_TIME          datetime,
-   primary key (id)
-);
+   primary key (PRODUCT_TYPE_ID)
+);ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*==============================================================*/
 /* Table: TRAFFIC_STATISTICS                                    */
 /*==============================================================*/
 create table TRAFFIC_STATISTICS
 (
-   ID                   bigint not null,
+   ID                   bigint not null AUTO_INCREMENT,
    ENTITY_ID            bigint,
    ENTITY_NAME          varchar(50),
    BROWSE_TIME          datetime,
    BROWSE_IP            varchar(100),
    primary key (ID)
-);
+);ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 alter table PRODUCT_APP_ENV add constraint FK_Reference_3 foreign key (PRODUCT_ID)
       references PRODUCT_MAIN (PRODUCT_ID) on delete restrict on update restrict;

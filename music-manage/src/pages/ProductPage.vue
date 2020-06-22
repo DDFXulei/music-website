@@ -15,7 +15,7 @@
             </div>
             <el-upload
               class="upload-demo"
-              :action="uploadUrl(scope.row.productId)"
+              :action="uploadUrl('avatar',scope.row.productId)"
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload"
@@ -57,11 +57,6 @@
             <p style="height: 100px; overflow: scroll">{{ scope.row.productIntro }}</p>
           </template>
         </el-table-column>
-        <el-table-column label="参数管理" width="110" align="center">
-          <template slot-scope="scope">
-            <el-button size="mini" @click="productEdit(scope.row.productId, scope.row.productName)">参数管理</el-button>
-          </template>
-        </el-table-column>
         <el-table-column label="操作" width="150" align="center">
           <template slot-scope="scope">
             <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
@@ -89,30 +84,62 @@
         label-width="80px"
         class="demo-ruleForm"
         >
-        <el-form-item prop="name" label="产品名称" size="mini">
-          <el-input v-model="registerForm.name" placeholder="产品名称"></el-input>
+       <el-form-item label="产品名称">
+          <el-input v-model="formData.productName"></el-input>
         </el-form-item>
-        <el-form-item label="产品类别" size="mini">
-          <el-radio-group v-model="registerForm.sex">
-            <el-radio :label="0">女</el-radio>
-            <el-radio :label="1">男</el-radio>
-            <el-radio :label="2">组合</el-radio>
-            <el-radio :label="3">不明</el-radio>
-          </el-radio-group>
+        <el-form-item label="产品图片">
+            <div class="product-img">
+              <img :src="getUrl(formData.productParam)" alt="" style="width: 100%;"/>
+            </div>
+            <el-upload
+              class="upload-demo"
+              :action="uploadUrl('param',formData.productId)"
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload"
+              >
+              <el-button size="mini">更新图片</el-button>
+            </el-upload>
         </el-form-item>
-        <el-form-item prop="location" label="故乡" size="mini">
-          <el-input v-model="registerForm.location" placeholder="故乡"></el-input>
+        <el-form-item label="产品类别">
+          <el-select v-model="formData.productType" placeholder="请选择产品类别">
+            <el-option label="吸附式干燥机" value="1"></el-option>
+            <el-option label="冷冻式干燥机" value="2"></el-option>
+            <el-option label="管道过滤器" value="4"></el-option>
+            <el-option label="制氮机" value="8"></el-option>
+            <el-option label="工艺气体干燥" value="16"></el-option>
+            <el-option label="其他辅助产品" value="32"></el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item prop="birth" label="出生" size="mini">
-          <el-date-picker
-            type="date"
-            placeholder="选择日期"
-            v-model="registerForm.birth"
-            style="width: 100%;"
-          ></el-date-picker>
+        <el-form-item label="产品标题">
+          <el-input
+            type="textarea"
+            autosize
+            placeholder="请输入产品标题"
+            v-model="formData.productTitle">
+          </el-input>
         </el-form-item>
-        <el-form-item prop="introduction" label="歌手介绍" size="mini">
-          <el-input v-model="registerForm.introduction" type="textarea" placeholder="歌手介绍"></el-input>
+        <el-form-item label="产品简介">
+          <el-input
+            type="textarea"
+            autosize
+            placeholder="请输入产品简介"
+            v-model="formData.productIntro">
+          </el-input>
+        </el-form-item>
+        <el-form-item label="产品参数">
+            <div class="product-img">
+              <img :src="getUrl(formData.productParam)" alt="" style="width: 100%;"/>
+            </div>
+            <el-upload
+              class="upload-demo"
+              :action="uploadUrl('param',formData.productId)"
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload"
+              >
+              <el-button size="mini">更新图片</el-button>
+            </el-upload>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -122,27 +149,50 @@
     </el-dialog>
 
     <!-- 编辑弹出框 -->
-    <el-dialog title="编辑" :visible.sync="editVisible" width="400px">
-      <el-form ref="form" :model="form" label-width="60px">
-        <el-form-item label="歌手" size="mini">
-          <el-input v-model="form.name"></el-input>
+    <el-dialog title="编辑" :visible.sync="editVisible" width="80%">
+      <el-form ref="formData" :model="formData" label-width="10%">
+        <el-form-item label="产品名称">
+          <el-input v-model="formData.productName"></el-input>
         </el-form-item>
-        <el-form-item label="性别" size="mini">
-          <el-radio-group v-model="form.sex">
-            <el-radio :label="0">女</el-radio>
-            <el-radio :label="1">男</el-radio>
-            <el-radio :label="2">组合</el-radio>
-            <el-radio :label="3">不明</el-radio>
-          </el-radio-group>
+        <el-form-item label="产品类别">
+          <el-select v-model="formData.productType" placeholder="请选择产品类别">
+            <el-option label="吸附式干燥机" value="1"></el-option>
+            <el-option label="冷冻式干燥机" value="2"></el-option>
+            <el-option label="管道过滤器" value="4"></el-option>
+            <el-option label="制氮机" value="8"></el-option>
+            <el-option label="工艺气体干燥" value="16"></el-option>
+            <el-option label="其他辅助产品" value="32"></el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item label="生日" size="mini">
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.birth" style="width: 100%;"></el-date-picker>
+        <el-form-item label="产品标题">
+          <el-input
+            type="textarea"
+            autosize
+            placeholder="请输入产品标题"
+            v-model="formData.productIntro">
+          </el-input>
         </el-form-item>
-        <el-form-item label="地区" size="mini">
-          <el-input v-model="form.location"></el-input>
+        <el-form-item label="产品简介">
+          <el-input
+            type="textarea"
+            autosize
+            placeholder="请输入产品简介"
+            v-model="formData.productIntro">
+          </el-input>
         </el-form-item>
-        <el-form-item label="简介" size="mini">
-          <el-input type="textarea" v-model="form.introduction"></el-input>
+        <el-form-item label="产品参数">
+            <div class="product-img">
+              <img :src="getUrl(formData.productParam)" alt="" style="width: 100%;"/>
+            </div>
+            <el-upload
+              class="upload-demo"
+              :action="uploadUrl('param',formData.productId)"
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload"
+              >
+              <el-button size="mini">更新图片</el-button>
+            </el-upload>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -186,15 +236,14 @@ export default {
       editVisible: false,
       delVisible: false,
       select_word: '',
-      form: {
+      formData: {
         // 编辑框信息
-        id: '',
-        name: '',
-        sex: '',
-        pic: '',
-        birth: '',
-        location: '',
-        introduction: ''
+        productId: '',
+        productName: '',
+        productTitle:'',
+        productType:'',
+        productIntro:'',
+        productParam:''
       },
       pageSize: 5, // 页数
       currentPage: 1, // 当前页
@@ -229,8 +278,8 @@ export default {
     handleCurrentChange (val) {
       this.currentPage = val
     },
-    uploadUrl (id) {
-      return `${this.$store.state.HOST}/singer/avatar/update?id=${id}`
+    uploadUrl (name,id) {
+      return `${this.$store.state.HOST}/product/${name}/update?id=${id}`
     },
     // 添加歌手
     addsinger () {
@@ -346,6 +395,7 @@ export default {
 .product-img {
   width: 100%;
   height: 80px;
+  border: 1px solid balck;
   border-radius: 5px;
   margin-bottom: 5px;
   overflow: hidden;

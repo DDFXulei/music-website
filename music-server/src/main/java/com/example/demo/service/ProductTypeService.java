@@ -8,7 +8,7 @@ public interface ProductTypeService {
 	
 	boolean addProduct (ProductType productType);
 
-    boolean updateProductTypeName(ProductType productType);
+    boolean updateProductType(ProductType productType);
 
     boolean deleteProductType(Long productTypeId);
     

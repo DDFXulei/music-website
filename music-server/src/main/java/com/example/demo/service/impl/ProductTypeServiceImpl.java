@@ -3,11 +3,13 @@ package com.example.demo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ProductTypeMapper;
 import com.example.demo.domain.ProductType;
 import com.example.demo.service.ProductTypeService;
 
+@Service
 public class ProductTypeServiceImpl implements ProductTypeService {
 
 	@Autowired
@@ -20,9 +22,9 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 	}
 
 	@Override
-	public boolean updateProductTypeName(ProductType productType) {
+	public boolean updateProductType(ProductType productType) {
 		
-		return productTypeMapper.updateProductTypeName(productType)>0 ? true : false;
+		return productTypeMapper.updateProductType(productType)>0 ? true : false;
 	}
 
 	@Override
@@ -36,5 +38,6 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 		
 		return productTypeMapper.productTypeList();
 	}
+
 
 }

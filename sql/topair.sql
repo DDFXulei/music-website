@@ -16,8 +16,17 @@ product_id:
 	2: 冷冻式干燥机
 	4: 管道过滤器
 	8: 制氮机
-	16； 工艺气体干燥
-	
+	16： 工艺气体干燥
+	32：其他辅助设备
+
+   insert into `PRODUCT_TYPE` values (1,'吸附式干燥机',current_timestamp(),current_timestamp());
+   insert into `PRODUCT_TYPE` values (2,'冷冻式干燥机',current_timestamp(),current_timestamp());
+   insert into `PRODUCT_TYPE` values (4,'管道过滤器',current_timestamp(),current_timestamp());
+   insert into `PRODUCT_TYPE` values (8,'制氮机',current_timestamp(),current_timestamp());
+   insert into `PRODUCT_TYPE` values (16,'工艺气体干燥',current_timestamp(),current_timestamp());
+   insert into `PRODUCT_TYPE` values (32,'其他辅助设备',current_timestamp(),current_timestamp());
+   insert into `PRODUCT_TYPE` values (1024,'others',current_timestamp(),current_timestamp());
+   insert into `PRODUCT_TYPE` values (1025,'others',current_timestamp(),current_timestamp());
 
 DROP TABLE IF EXISTS `product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -161,6 +170,7 @@ create table PRODUCT_MAIN
 /*==============================================================*/
 /* Table: PRODUCT_TYPE                                          */
 /*==============================================================*/
+drop table PRODUCT_TYPE
 create table PRODUCT_TYPE
 (
    PRODUCT_TYPE_ID      bigint not null AUTO_INCREMENT,

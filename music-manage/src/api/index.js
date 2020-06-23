@@ -84,5 +84,11 @@ export const deleteListSong = (songId) => get(`ListSong/delete?songId=${songId}`
 
 //=======================> 产品API
 export const getProductList = () => get('productList')
-// 返回指定歌手ID的歌曲
+// 返回指定ID的产品
 export const getProductOfProductId = (id) => get(`/product/detail?productId=${id}`)
+
+
+//=======================> 产品类别API
+export const getProductTypeList = () => get('productTypeList')
+// 更新歌手信息
+export const updateProductType = (params) => post(`productType/update`, params)

@@ -16,7 +16,7 @@ public interface ProductTypeMapper {
     
     ProductType selectByPrimaryKey(Long productTypeId);
     
-    int updateProductTypeName(ProductType productTypeName);
+    int updateProductType(ProductType productType);
     
     List<ProductType> productTypeList();
 

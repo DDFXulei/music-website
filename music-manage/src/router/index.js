@@ -31,6 +31,11 @@ export default new Router({
           meta: { title: 'Product' }
         },
         {
+          path: '/ProductType',
+          component: resolve => require(['../pages/ProductTypePage.vue'], resolve),
+          meta: { title: 'ProductType' }
+        },
+        {
           path: '/param',
           component: resolve => require(['../pages/ParamPage.vue'], resolve),
           meta: { title: 'param' }

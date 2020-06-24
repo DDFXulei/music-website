@@ -92,3 +92,7 @@ export const getProductOfProductId = (id) => get(`/product/detail?productId=${id
 export const getProductTypeList = () => get('productTypeList')
 // 更新歌手信息
 export const updateProductType = (params) => post(`productType/update`, params)
+// 添加产品类别
+export const setProductType = (params) => post(`productType/add`, params)
+// 删除歌曲
+export const deleteProductType = (productTypeId) => get(`productType/delete?productTypeId=${productTypeId}`)

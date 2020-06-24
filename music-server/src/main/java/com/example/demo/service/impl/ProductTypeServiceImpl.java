@@ -16,7 +16,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 	private ProductTypeMapper productTypeMapper;
 	
 	@Override
-	public boolean addProduct(ProductType productType) {
+	public boolean addProductType(ProductType productType) {
 		
 		return productTypeMapper.addProductType(productType)>0 ? true : false;
 	}
@@ -28,9 +28,9 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 	}
 
 	@Override
-	public boolean deleteProductType(Long productTypeId) {
+	public boolean deleteProductTypeById(Long productTypeId) {
 		
-		return productTypeMapper.deleteProductType(productTypeId)>0 ? true : false;
+		return productTypeMapper.deleteProductTypeById(productTypeId)>0 ? true : false;
 	}
 
 	@Override
@@ -38,6 +38,8 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 		
 		return productTypeMapper.productTypeList();
 	}
+
+
 
 
 }

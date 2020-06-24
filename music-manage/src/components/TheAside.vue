@@ -52,6 +52,11 @@ export default {
         },
         {
           icon: 'el-icon-document',
+          index: 'productType',
+          title: '产品类别管理'
+        },
+        {
+          icon: 'el-icon-document',
           index: 'product',
           title: '产品管理'
         }

@@ -217,7 +217,7 @@ import { mixin } from '../mixins'
 import { setSinger, getProductList, updateSingerMsg, deleteSinger } from '../api/index'
 
 export default {
-  name: 'singer-page',
+  name: 'product-page',
   mixins: [mixin],
   data () {
     return {
@@ -240,10 +240,10 @@ export default {
         // 编辑框信息
         productId: '',
         productName: '',
-        productTitle:'',
-        productType:'',
-        productIntro:'',
-        productParam:''
+        productTitle: '',
+        productType: '',
+        productIntro: '',
+        productParam: ''
       },
       pageSize: 5, // 页数
       currentPage: 1, // 当前页
@@ -278,7 +278,7 @@ export default {
     handleCurrentChange (val) {
       this.currentPage = val
     },
-    uploadUrl (name,id) {
+    uploadUrl (name, id) {
       return `${this.$store.state.HOST}/product/${name}/update?id=${id}`
     },
     // 添加歌手

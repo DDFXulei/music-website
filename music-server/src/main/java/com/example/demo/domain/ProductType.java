@@ -9,7 +9,7 @@ public class ProductType {
 	
 	private Date createTime;
 	
-	private Date updateTIme;
+	private Date updateTime;
 
 	public Long getProductTypeId() {
 		return productTypeId;
@@ -35,12 +35,12 @@ public class ProductType {
 		this.createTime = createTime;
 	}
 
-	public Date getUpdateTIme() {
-		return updateTIme;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 
-	public void setUpdateTIme(Date updateTIme) {
-		this.updateTIme = updateTIme;
+	public void setUpdateTime(Date updateTIme) {
+		this.updateTime = updateTIme;
 	}
 	
 	

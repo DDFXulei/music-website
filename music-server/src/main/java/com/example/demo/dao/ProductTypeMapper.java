@@ -6,7 +6,7 @@ import com.example.demo.domain.ProductType;
 
 public interface ProductTypeMapper {
 	
-	int deleteProductType(Long productTypeName);
+	int deleteProductTypeById(Long productTypeId);
 
     int insert(ProductType record);
     

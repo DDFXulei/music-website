@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <el-dialog title="添加产品类别" :visible.sync="centerDialogVisible" width="400px" center>
+    <el-dialog title="添加产品类别" :visible.sync="centerDialogVisible" width="450px" center>
       <el-form
         :model="registerForm"
         status-icon
@@ -46,14 +46,14 @@
         label-width="80px"
         class="demo-ruleForm"
         >
-       <el-form-item label="产品类别名称">
+       <el-form-item label="产品类别">
           <el-input v-model="registerForm.productTypeName"></el-input>
         </el-form-item>
 
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button size="mini" @click="centerDialogVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="addsinger">确 定</el-button>
+        <el-button type="primary" size="mini" @click="addProductType">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -86,7 +86,7 @@
 
 <script>
 import { mixin } from '../mixins'
-import { setSinger, getProductTypeList, updateProductType, deleteSinger } from '../api/index'
+import { getProductTypeList, updateProductType, setProductType, deleteProductType } from '../api/index'
 
 export default {
   name: 'product-type-page',
@@ -112,7 +112,7 @@ export default {
         productTypeId: '',
         productTypeName: ''
       },
-      pageSize: 5, // 页数
+      pageSize: 25, // 页数
       currentPage: 1, // 当前页
       idx: -1
     }
@@ -127,10 +127,11 @@ export default {
     select_word: function () {
       if (this.select_word === '') {
         this.tableData = this.tempDate
+        // console.log(this.tableData)
       } else {
         this.tableData = []
         for (let item of this.tempDate) {
-          if (item.name.includes(this.select_word)) {
+          if (item.productTypeName.includes(this.select_word)) {
             this.tableData.push(item)
           }
         }
@@ -146,18 +147,11 @@ export default {
       this.currentPage = val
     },
 
-    // 添加歌手
-    addsinger () {
-      let d = this.registerForm.birth
-      let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+    // 添加产品类别
+    addProductType () {
       let params = new URLSearchParams()
-      params.append('name', this.registerForm.name)
-      params.append('sex', this.registerForm.sex)
-      params.append('pic', '/img/singerPic/hhh.jpg')
-      params.append('birth', datetime)
-      params.append('location', this.registerForm.location)
-      params.append('introduction', this.registerForm.introduction)
-      setSinger(params)
+      params.append('productTypeName', this.registerForm.productTypeName)
+      setProductType(params)
         .then(res => {
           if (res.code === 1) {
             this.getData()
@@ -216,9 +210,13 @@ export default {
         })
       this.editVisible = false
     },
+    handleDelete (productTypeId) {
+      this.productTypeId = productTypeId
+      this.delVisible = true
+    },
     // 确定删除
     deleteRow () {
-      deleteSinger(this.idx)
+      deleteProductType(this.productTypeId)
         .then(res => {
           if (res) {
             this.getData()
@@ -230,6 +228,7 @@ export default {
         .catch(err => {
           console.log(err)
         })
+      this.productTypeId = ''
       this.delVisible = false
     },
     productEdit (productId, productName) {

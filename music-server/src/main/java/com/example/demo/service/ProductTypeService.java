@@ -6,11 +6,11 @@ import com.example.demo.domain.ProductType;
 
 public interface ProductTypeService {
 	
-	boolean addProduct (ProductType productType);
+	boolean addProductType (ProductType productType);
 
     boolean updateProductType(ProductType productType);
 
-    boolean deleteProductType(Long productTypeId);
+    boolean deleteProductTypeById(Long productTypeId);
     
     List<ProductType> allProductType();
 

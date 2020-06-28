@@ -16,9 +16,10 @@ product_id:
 	2: 冷冻式干燥机
 	4: 管道过滤器
 	8: 制氮机
-	16： 工艺气体干燥
-	32：其他辅助设备
+	16: 工艺气体干燥
+	32: 其他辅助产品
 
+   insert into `PRODUCT_TYPE` values (0,'全部类别',current_timestamp(),current_timestamp());
    insert into `PRODUCT_TYPE` values (1,'吸附式干燥机',current_timestamp(),current_timestamp());
    insert into `PRODUCT_TYPE` values (2,'冷冻式干燥机',current_timestamp(),current_timestamp());
    insert into `PRODUCT_TYPE` values (4,'管道过滤器',current_timestamp(),current_timestamp());
@@ -91,6 +92,23 @@ values(6,1,"/img/productPic/productEnv/env6.jpg","轮胎气压",current_timestam
 
 
 alter table product_app_env add column 
+
+
+	1: 吸附式干燥机
+	2: 冷冻式干燥机
+	4: 管道过滤器
+	8: 制氮机
+	16: 工艺气体干燥
+	32: 其他辅助产品
+insert into `PRODUCT_TYPE` values (1,'吸附式干燥机',current_timestamp(),current_timestamp());
+insert into `PRODUCT_TYPE` values (2,'冷冻式干燥机',current_timestamp(),current_timestamp());
+insert into `PRODUCT_TYPE` values (4,'管道过滤器',current_timestamp(),current_timestamp());
+insert into `PRODUCT_TYPE` values (8,'制氮机',current_timestamp(),current_timestamp());
+insert into `PRODUCT_TYPE` values (16,'工艺气体干燥',current_timestamp(),current_timestamp());
+insert into `PRODUCT_TYPE` values (32,'其他辅助产品',current_timestamp(),current_timestamp());
+
+
+
 
 
 

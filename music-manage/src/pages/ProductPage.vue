@@ -7,6 +7,7 @@
         <el-button type="primary" size="mini" @click="centerDialogVisible = true">添加产品</el-button>
       </div>
       <el-table ref="multipleTable" size="mini" border style="width: 100%" height="550px" :data="data" @selection-change="handleSelectionChange">
+      <!-- <el-table-column label="序号" type="index" width="40"></el-table-column> -->
         <el-table-column type="selection" width="40"></el-table-column>
         <el-table-column label="产品图片" width="110" align="center">
           <template slot-scope="scope">
@@ -76,33 +77,32 @@
       </div>
     </div>
 
+<!--  添加产品 -->
     <el-dialog title="添加产品" :visible.sync="centerDialogVisible" width="400px" center>
       <el-form
+        :rules="rules"
         :model="registerForm"
         status-icon
         ref="registerForm"
         label-width="80px"
         class="demo-ruleForm"
         >
-       <el-form-item label="产品名称">
-          <el-input v-model="formData.productName"></el-input>
+       <el-form-item label="产品名称" prop="productName">
+          <el-input v-model="registerForm.productName" placeholder="请输入产品名称"></el-input>
         </el-form-item>
         <el-form-item label="产品图片">
-            <div class="product-img">
-              <img :src="getUrl(formData.productParam)" alt="" style="width: 100%;"/>
-            </div>
-            <el-upload
-              class="upload-demo"
-              :action="uploadUrl('param',formData.productId)"
-              :show-file-list="false"
-              :on-success="handleAvatarSuccess"
-              :before-upload="beforeAvatarUpload"
-              >
-              <el-button size="mini">更新图片</el-button>
-            </el-upload>
+          <el-upload
+            class="avatar-uploader"
+            :action="uploadUrl('param',registerForm.productId)"
+            :show-file-list="false"
+            :on-success="handleAvatarSuccess"
+            :before-upload="beforeAvatarUpload">
+            <img v-if="imageUrl" :src="imageUrl" class="avatar">
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
         </el-form-item>
         <el-form-item label="产品类别">
-          <el-select v-model="formData.productType" placeholder="请选择产品类别">
+          <el-select v-model="registerForm.productType" placeholder="请选择产品类别">
             <el-option label="吸附式干燥机" value="1"></el-option>
             <el-option label="冷冻式干燥机" value="2"></el-option>
             <el-option label="管道过滤器" value="4"></el-option>
@@ -116,7 +116,7 @@
             type="textarea"
             autosize
             placeholder="请输入产品标题"
-            v-model="formData.productTitle">
+            v-model="registerForm.productTitle">
           </el-input>
         </el-form-item>
         <el-form-item label="产品简介">
@@ -124,16 +124,16 @@
             type="textarea"
             autosize
             placeholder="请输入产品简介"
-            v-model="formData.productIntro">
+            v-model="registerForm.productIntro">
           </el-input>
         </el-form-item>
         <el-form-item label="产品参数">
             <div class="product-img">
-              <img :src="getUrl(formData.productParam)" alt="" style="width: 100%;"/>
+              <img :src="getUrl(registerForm.productParam)" alt="" style="width: 100%;"/>
             </div>
             <el-upload
               class="upload-demo"
-              :action="uploadUrl('param',formData.productId)"
+              :action="uploadUrl('param',registerForm.productId)"
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload"
@@ -191,7 +191,7 @@
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload"
               >
-              <el-button size="mini">更新图片</el-button>
+              <el-button size="mini">添加图片</el-button>
             </el-upload>
         </el-form-item>
       </el-form>
@@ -221,13 +221,19 @@ export default {
   mixins: [mixin],
   data () {
     return {
+      imageUrl: '',
+      rules:{
+        productName: [
+           { required: true, message: '请输入产品名称', trigger: 'blur' }
+        ]
+      },
       registerForm: {
         // 添加框信息
-        name: '',
-        sex: '',
-        birth: '',
-        location: '',
-        introduction: ''
+        productName: '',
+        productTitle: '',
+        productType: '',
+        productIntro: '',
+        productParam: ''
       },
       tableData: [],
       tempDate: [],
@@ -321,16 +327,14 @@ export default {
     // 编辑
     handleEdit (row) {
       this.editVisible = true
-      this.idx = row.id
-      let datetime = row.birth
-      this.form = {
-        id: row.id,
-        name: row.name,
-        sex: row.sex,
-        pic: row.pic,
-        birth: datetime,
-        location: row.location,
-        introduction: row.introduction
+      this.idx = row.productId
+      this.formData = {
+        productId: row.productId,
+        productName: row.productName,
+        productTitle: row.productTitle,
+        productType: row.productType,
+        productIntro: row.productIntro,
+        productParam: row.productParam
       }
     },
     // 保存编辑
@@ -378,6 +382,21 @@ export default {
     productEdit (productId, productName) {
       this.$router.push({path: `/param`, query: {productId: productId, productName: productName}})
     }
+  },
+  handleAvatarSuccess(res, file) {
+    this.imageUrl = URL.createObjectURL(file.raw);
+  },
+  beforeAvatarUpload(file) {
+    const isJPG = file.type === 'image/jpeg';
+    const isLt2M = file.size / 1024 / 1024 < 2;
+
+    if (!isJPG) {
+      this.$message.error('上传头像图片只能是 JPG 格式!');
+    }
+    if (!isLt2M) {
+      this.$message.error('上传头像图片大小不能超过 2MB!');
+    }
+    return isJPG && isLt2M;
   }
 }
 </script>
@@ -405,4 +424,28 @@ export default {
   display: flex;
   justify-content: center;
 }
+
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
 </style>

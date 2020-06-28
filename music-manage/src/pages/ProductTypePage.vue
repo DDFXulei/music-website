@@ -6,7 +6,7 @@
         <el-button type="primary" size="mini" @click="centerDialogVisible = true">添加产品类别</el-button>
       </div>
       <el-table ref="multipleTable" size="mini" border style="width: 100%" height="550px" :data="data" @selection-change="handleSelectionChange">
-        <el-table-column type="selection" width="40"></el-table-column>
+        <el-table-column label="序号" type="index" width="50"></el-table-column>
         <el-table-column label="产品类别Id" width="80" align="center">
           <template slot-scope="scope">
             <div>{{scope.row.productTypeId}}</div>

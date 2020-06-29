@@ -29,7 +29,6 @@
 
 <script>
 import ContentList from '../components/ContentList'
-import { mapGetters } from 'vuex'
 import { getProductList, getProductListOfType } from '../api/index'
 import { productType } from '../assets/data/productList'
 
@@ -80,7 +79,7 @@ export default {
         .then(res => {
           this.currentPage = 1
           this.albumDatas = res
-          // console.log(this.albumDatas)
+          console.log(this.albumDatas)
         })
         .catch(err => {
           console.log(err)

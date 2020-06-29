@@ -67,7 +67,11 @@ values(5,8,"变压吸附制氮机 PPNG","TopAir PPNG150-800 HE系列制氮机可
 insert into `product_main` 
 values(6,1,"压缩热吸附式干燥机PHC(E)","TopAir配置高品质部件的PHC(e)压缩热吸附式干燥机，可提供洁净和干燥的空气，从而延长您设备的使用寿命，全程保护您的产品。压缩热吸附式干燥机使用压缩机高温气体，脱附干燥剂中的水分。","/img/productPic/101.jpg",current_timestamp(),current_timestamp(),"","","");
 
+insert into `product_main` 
+values(1022,1,"压缩热吸附式干燥机PHA(A)","TopAir配置高品质部件的PHA(A)压缩热吸附式干燥机，可提供洁净和干燥的空气，从而延长您设备的使用寿命，全程保护您的产品。压缩热吸附式干燥机使用压缩机高温气体，脱附干燥剂中的水分。","/img/productPic/5.jpg",current_timestamp(),current_timestamp(),"","","");
 
+insert into `product_main` 
+values(1021,1,"压缩热吸附式","TopAir压缩热吸附式干燥机，可提供洁净和干燥的空气，从而延长您设备的使用寿命，全程保护您的产品。压缩热吸附式干燥机使用压缩机高温气体，脱附干燥剂中的水分。","/img/productPic/81.jpg",current_timestamp(),current_timestamp(),"","","");
 
 
 

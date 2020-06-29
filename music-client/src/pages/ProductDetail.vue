@@ -71,7 +71,7 @@
                 <div class="two">
                     <div class="title">技术参数</div>
                     <div class="jsh">
-                        <p><img :src=attachImageUrl(pic)></p>
+                        <p><img :src=attachImageUrl(param)></p>
                     </div>
                 </div>
             </div>
@@ -99,7 +99,8 @@ export default {
       type: '',
       pic: '',
       name: '',
-      time: ''
+      time: '',
+      param: ''
     }
   },
   computed: {
@@ -121,8 +122,10 @@ export default {
     this.type = this.productType
     this.pic = this.productPic
     this.name = this.productName
+    this.param = this.productParam
     this.time = this.updateTime
     this.getProductEnvList()
+    console.log('this.param:' + this.productPic)
   },
   methods: {
     getProductEnvList () {
@@ -277,6 +280,10 @@ export default {
             padding-bottom: 45px;
             overflow: hidden;
             color:#444
+        }
+        .product-bottom img{
+            width: 100%;
+            height: 100%;
         }
         .product-bottom .container div{
             display: block;

@@ -456,6 +456,8 @@ export default {
 }
 
   .avatar-uploader{
+    height: 150px;
+    width: 180px;
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
     cursor: pointer;

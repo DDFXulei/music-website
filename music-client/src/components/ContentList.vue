@@ -29,6 +29,7 @@ export default {
       this.$store.commit('setProductPic', item.productPic)
       this.$store.commit('setProductName', item.productName)
       this.$store.commit('setUpdateTime', item.updateTime)
+      this.$store.commit('setProductParam', item.productParam)
       this.$router.push({path: `/product-detail/${item.productId}`})
       // if (type) {
       //   this.$router.push({path: `/singer-album/${item.id}`})

@@ -45,6 +45,9 @@
         label-width="80px"
         class="demo-ruleForm"
         >
+      <!-- <el-form-item label="类别ID">
+          <el-input v-model="registerForm.productTypeId"></el-input>
+      </el-form-item> -->
        <el-form-item label="产品类别">
           <el-input v-model="registerForm.productTypeName"></el-input>
         </el-form-item>
@@ -96,6 +99,7 @@ export default {
       productTypeName: '',
 
       registerForm: {
+        productTypeId: '',
         // 添加框信息
         productTypeName: ''
       },
@@ -149,6 +153,7 @@ export default {
     // 添加产品类别
     addProductType () {
       let params = new URLSearchParams()
+      params.append('productTypeId', this.registerForm.productTypeId)
       params.append('productTypeName', this.registerForm.productTypeName)
       setProductType(params)
         .then(res => {

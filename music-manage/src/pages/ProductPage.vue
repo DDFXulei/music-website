@@ -93,7 +93,7 @@
         <el-form-item label="产品图片">
           <el-upload
             class="avatar-uploader"
-            :action="uploadUrl('param',registerForm.productId)"
+            action="https://jsonplaceholder.typicode.com/posts/"
             :show-file-list="false"
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload">
@@ -103,12 +103,12 @@
         </el-form-item>
         <el-form-item label="产品类别">
           <el-select v-model="registerForm.productType" placeholder="请选择产品类别">
-            <el-option label="吸附式干燥机" value="1"></el-option>
-            <el-option label="冷冻式干燥机" value="2"></el-option>
-            <el-option label="管道过滤器" value="4"></el-option>
-            <el-option label="制氮机" value="8"></el-option>
-            <el-option label="工艺气体干燥" value="16"></el-option>
-            <el-option label="其他辅助产品" value="32"></el-option>
+            <el-option
+            v-for="item in options"
+            :key="item.type"
+            :label="item.name"
+            :value="item.type"
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="产品标题">
@@ -128,17 +128,14 @@
           </el-input>
         </el-form-item>
         <el-form-item label="产品参数">
-            <div class="product-img">
-              <img :src="getUrl(registerForm.productParam)" alt="" style="width: 100%;"/>
-            </div>
             <el-upload
-              class="upload-demo"
-              :action="uploadUrl('param',registerForm.productId)"
+              class="avatar-uploader"
+              action="https://jsonplaceholder.typicode.com/posts/"
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
-              :before-upload="beforeAvatarUpload"
-              >
-              <el-button size="mini">更新图片</el-button>
+              :before-upload="beforeAvatarUpload">
+              <img v-if="imageUrl" :src="imageUrl" class="avatar">
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
         </el-form-item>
       </el-form>
@@ -222,9 +219,9 @@ export default {
   data () {
     return {
       imageUrl: '',
-      rules:{
+      rules: {
         productName: [
-           { required: true, message: '请输入产品名称', trigger: 'blur' }
+          { required: true, message: '请输入产品名称', trigger: 'blur' }
         ]
       },
       registerForm: {
@@ -253,7 +250,33 @@ export default {
       },
       pageSize: 5, // 页数
       currentPage: 1, // 当前页
-      idx: -1
+      idx: -1,
+      options: [
+        {
+          name: '吸附式干燥机',
+          type: 1
+        },
+        {
+          name: '冷冻式干燥机',
+          type: 2
+        },
+        {
+          name: '管道过滤器',
+          type: 4
+        },
+        {
+          name: '制氮机',
+          type: 8
+        },
+        {
+          name: '工艺气体干燥',
+          type: 16
+        },
+        {
+          name: '其他辅助产品',
+          type: 32
+        }
+      ]
     }
   },
   computed: {
@@ -280,6 +303,13 @@ export default {
     this.getData()
   },
   methods: {
+    // handleClose (done) {
+    //   this.$confirm('确认关闭？')
+    //     .then(_ => {
+    //       done()
+    //     })
+    //     .catch(_ => {})
+    // },
     // 获取当前页
     handleCurrentChange (val) {
       this.currentPage = val
@@ -383,20 +413,20 @@ export default {
       this.$router.push({path: `/param`, query: {productId: productId, productName: productName}})
     }
   },
-  handleAvatarSuccess(res, file) {
-    this.imageUrl = URL.createObjectURL(file.raw);
+  handleAvatarSuccess (res, file) {
+    this.imageUrl = URL.createObjectURL(file.raw)
   },
-  beforeAvatarUpload(file) {
-    const isJPG = file.type === 'image/jpeg';
-    const isLt2M = file.size / 1024 / 1024 < 2;
+  beforeAvatarUpload (file) {
+    const isJPG = file.type === 'image/jpeg'
+    const isLt2M = file.size / 1024 / 1024 < 2
 
     if (!isJPG) {
-      this.$message.error('上传头像图片只能是 JPG 格式!');
+      this.$message.error('上传头像图片只能是 JPG 格式!')
     }
     if (!isLt2M) {
-      this.$message.error('上传头像图片大小不能超过 2MB!');
+      this.$message.error('上传头像图片大小不能超过 2MB!')
     }
-    return isJPG && isLt2M;
+    return isJPG && isLt2M
   }
 }
 </script>
@@ -425,14 +455,14 @@ export default {
   justify-content: center;
 }
 
-  .avatar-uploader .el-upload {
+  .avatar-uploader{
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
   }
-  .avatar-uploader .el-upload:hover {
+  .avatar-uploader:hover {
     border-color: #409EFF;
   }
   .avatar-uploader-icon {

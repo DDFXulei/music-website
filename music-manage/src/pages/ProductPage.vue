@@ -92,18 +92,28 @@
         </el-form-item>
         <el-form-item label="产品图片">
           <el-upload
-            class="avatar-uploader"
             action="#"
             list-type="picture-card"
-            :show-file-list="false"
-            :on-preview="handlePictureCardPreview"
-            :on-success="handleAvatarSuccess"
-            :before-upload="beforeAvatarUpload">
-            <i class="el-icon-plus"></i>
+            :multiple="false"
+            :auto-upload="false"
+            :disabled="dialogVisible"
+            >
+              <i slot="default" class="el-icon-plus"></i>
+              <div slot="file" slot-scope="{file}">
+                <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
+                <span class="el-upload-list__item-actions" >
+                  <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
+                    <i class="el-icon-zoom-in"></i>
+                  </span>
+                  <span v-if="!disabled" class="el-upload-list__item-delete" @click="handleRemove(file)">
+                    <i class="el-icon-delete"></i>
+                  </span>
+                </span>
+              </div>
           </el-upload>
-          <el-dialog :visible.sync="dialogVisible">
-            <img width="100%" :src="imageUrl" alt="">
-          </el-dialog>
+          <!--<el-dialog :visible.sync="dialogVisible">
+            <img width="100%" :src="dialogImageUrl" alt="">
+          </el-dialog>-->
         </el-form-item>
         <el-form-item label="产品类别">
           <el-select v-model="registerForm.productType" placeholder="请选择产品类别">
@@ -132,16 +142,7 @@
           </el-input>
         </el-form-item>
         <el-form-item label="产品参数">
-            <el-upload
-              class="avatar-uploader"
-              action="#"
-              :show-file-list="false"
-              :on-success="handleAvatarSuccess"
-              :before-upload="beforeAvatarUpload"
-              :auto-upload="false">
-              <img v-if="imageUrl" :src="imageUrl" class="avatar">
-              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-            </el-upload>
+
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -223,7 +224,7 @@ export default {
   mixins: [mixin],
   data () {
     return {
-      imageUrl: '',
+      dialogImageUrl: '',
       dialogVisible: false,
       rules: {
         productName: [
@@ -310,8 +311,13 @@ export default {
   },
   methods: {
     handlePictureCardPreview (file) {
-      this.imageUrl = file.url
+      console.log('file ::::' + file)
+      this.dialogImageUrl = file.url
       this.dialogVisible = true
+      console.log('dialogVisible ::::' + this.dialogVisible)
+    },
+    handleRemove (file) {
+      console.log(file)
     },
     // handleClose (done) {
     //   this.$confirm('确认关闭？')
@@ -361,7 +367,7 @@ export default {
         this.tableData = res
         this.tempDate = res
         this.currentPage = 1
-        console.log(this.tableData)
+        // console.log(this.tableData)
       })
     },
     // 编辑
@@ -424,7 +430,7 @@ export default {
     }
   },
   handleAvatarSuccess (res, file) {
-    this.imageUrl = URL.createObjectURL(file.raw)
+    this.dialogImageUrl = URL.createObjectURL(file.raw)
   },
   beforeAvatarUpload (file) {
     const isJPG = file.type === 'image/jpeg'

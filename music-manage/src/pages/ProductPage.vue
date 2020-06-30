@@ -93,13 +93,17 @@
         <el-form-item label="产品图片">
           <el-upload
             class="avatar-uploader"
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action="#"
+            list-type="picture-card"
             :show-file-list="false"
+            :on-preview="handlePictureCardPreview"
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload">
-            <img v-if="imageUrl" :src="imageUrl" class="avatar">
-            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            <i class="el-icon-plus"></i>
           </el-upload>
+          <el-dialog :visible.sync="dialogVisible">
+            <img width="100%" :src="imageUrl" alt="">
+          </el-dialog>
         </el-form-item>
         <el-form-item label="产品类别">
           <el-select v-model="registerForm.productType" placeholder="请选择产品类别">
@@ -130,10 +134,11 @@
         <el-form-item label="产品参数">
             <el-upload
               class="avatar-uploader"
-              action="https://jsonplaceholder.typicode.com/posts/"
+              action="#"
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
-              :before-upload="beforeAvatarUpload">
+              :before-upload="beforeAvatarUpload"
+              :auto-upload="false">
               <img v-if="imageUrl" :src="imageUrl" class="avatar">
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
@@ -219,6 +224,7 @@ export default {
   data () {
     return {
       imageUrl: '',
+      dialogVisible: false,
       rules: {
         productName: [
           { required: true, message: '请输入产品名称', trigger: 'blur' }
@@ -303,6 +309,10 @@ export default {
     this.getData()
   },
   methods: {
+    handlePictureCardPreview (file) {
+      this.imageUrl = file.url
+      this.dialogVisible = true
+    },
     // handleClose (done) {
     //   this.$confirm('确认关闭？')
     //     .then(_ => {
@@ -454,28 +464,7 @@ export default {
   display: flex;
   justify-content: center;
 }
-
-  .avatar-uploader{
-    height: 150px;
-    width: 180px;
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader:hover {
-    border-color: #409EFF;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
-  }
-  .avatar {
+.avatar {
     width: 178px;
     height: 178px;
     display: block;

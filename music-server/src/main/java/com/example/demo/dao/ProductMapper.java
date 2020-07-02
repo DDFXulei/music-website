@@ -14,6 +14,8 @@ public interface ProductMapper {
     
     int updateProductPic(Product product);
     
+    int updateProductParam(Product product);
+    
     Product productOfId(Long productId);
     
     List<Product> allProducts();
@@ -66,4 +68,6 @@ public interface ProductMapper {
 	List<Product> productOfName(String productName);
 
 	List<Product> productOfType(Long productType);
+
+	
 }

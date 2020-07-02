@@ -25,14 +25,14 @@
             </el-upload>
           </template>
         </el-table-column>
-        <!-- <el-table-column label="技术参数图片" width="110" align="center">
+        <el-table-column label="参数图片" width="110" align="center">
           <template slot-scope="scope">
             <div class="product-img">
-              <img :src="getUrl(scope.row.pic)" alt="" style="width: 100%;"/>
+              <img :src="getUrl(scope.row.productParam)" alt="" style="width: 100%;"/>
             </div>
             <el-upload
               class="upload-demo"
-              :action="uploadUrl(scope.row.id)"
+              :action="uploadUrl('param',scope.row.productId)"
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload"
@@ -40,7 +40,7 @@
               <el-button size="mini">更新图片</el-button>
             </el-upload>
           </template>
-        </el-table-column> -->
+        </el-table-column>
         <el-table-column prop="productName" label="产品名称" width="120" align="center"></el-table-column>
         <el-table-column label="产品类别" width="120" align="center">
           <template slot-scope="scope">
@@ -345,7 +345,7 @@ export default {
         this.tableData = res
         this.tempDate = res
         this.currentPage = 1
-        // console.log(this.tableData)
+        console.log(this.tableData)
       })
     },
     // 编辑
@@ -407,9 +407,9 @@ export default {
       this.$router.push({path: `/param`, query: {productId: productId, productName: productName}})
     }
   },
-  handleAvatarSuccess (res, file) {
-    this.dialogImageUrl = URL.createObjectURL(file.raw)
-  },
+  // handleAvatarSuccess (res, file) {
+  //   this.dialogImageUrl = URL.createObjectURL(file.raw)
+  // },
   beforeAvatarUpload (file) {
     const isJPG = file.type === 'image/jpeg'
     const isLt2M = file.size / 1024 / 1024 < 2

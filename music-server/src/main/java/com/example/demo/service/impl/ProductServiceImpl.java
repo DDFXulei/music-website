@@ -39,6 +39,12 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.updateProductPic(product) > 0 ? true : false;
 	}
 	
+	@Override
+	public boolean updateProductParam(Product product) {
+		
+		return productMapper.updateProductParam(product) > 0 ? true : false;
+	}
+	
     @Override
     public List<Product> allProducts()
     {
@@ -50,6 +56,7 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.productOfId(id);
 	}
 	
+
 	//ABOVE
 
 
@@ -64,6 +71,8 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return productMapper.productOfType(productType);
 	}
+
+
 
 
 

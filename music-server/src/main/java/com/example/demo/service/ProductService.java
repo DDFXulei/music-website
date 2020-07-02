@@ -15,6 +15,8 @@ public interface ProductService {
     boolean updateProduct(Product product); 
     
     boolean updateProductPic(Product product); 
+   
+    boolean updateProductParam(Product product); 
     
     List<Product> allProducts();
 

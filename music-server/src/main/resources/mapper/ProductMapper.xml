@@ -159,6 +159,17 @@
 		where PRODUCT_ID = #{productId,jdbcType=BIGINT}
 
 	</update>
+	<update id="updateProductParam"
+		parameterType="com.example.demo.domain.Product">
+		update PRODUCT_MAIN
+		<set>
+			<if test="productParam != null">
+				PRODUCT_PARAM = #{productParam,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where PRODUCT_ID = #{productId,jdbcType=BIGINT}
+
+	</update>
 	<select id="allProducts" resultMap="BaseResultMap">
 		select * from PRODUCT_MAIN
 	</select>

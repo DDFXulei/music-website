@@ -118,8 +118,7 @@ public class ProductController {
 	// 更新产品参数图片
 	@ResponseBody
 	@RequestMapping(value = "/product/param/update", method = RequestMethod.POST)
-	public Object updateProductParaPic(@RequestParam("file") MultipartFile avatorFile,
-			@RequestParam("poductId") Long poductId) {
+	public Object updateProductParam(@RequestParam("file") MultipartFile avatorFile,@RequestParam("productId") Long productId) {
 		JSONObject jsonObject = new JSONObject();
 
 		if (avatorFile.isEmpty()) {
@@ -128,21 +127,20 @@ public class ProductController {
 			return jsonObject;
 		}
 		String fileName = System.currentTimeMillis() + avatorFile.getOriginalFilename();
-		String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "img"
-				+ System.getProperty("file.separator") + "productPic/param";
+		String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "img" + System.getProperty("file.separator") + "productPic/param/" ;
 		File file1 = new File(filePath);
 		if (!file1.exists()) {
 			file1.mkdir();
 		}
 
 		File dest = new File(filePath + System.getProperty("file.separator") + fileName);
-		String storeAvatorPath = "/img/productPic/param" + fileName;
+		String storeAvatorPath = "/img/productPic/param/" + fileName;
 		try {
 			avatorFile.transferTo(dest);
 			Product product = new Product();
-			product.setProductId(poductId);
-			product.setProductPic(filePath);
-			boolean res = productService.updateProductPic(product);
+			product.setProductId(productId);
+			product.setProductParam(storeAvatorPath);
+			boolean res = productService.updateProductParam(product);
 			if (res) {
 				jsonObject.put("code", 1);
 				jsonObject.put("pic", storeAvatorPath);
@@ -154,9 +152,7 @@ public class ProductController {
 				return jsonObject;
 			}
 
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		}catch (IOException e) {
 			jsonObject.put("code", 0);
 			jsonObject.put("msg", "上传失败" + e.getMessage());
 			return jsonObject;
@@ -165,6 +161,7 @@ public class ProductController {
 		}
 
 	}
+	
 	// 返回所有产品
 	@RequestMapping(value = "/productList", method = RequestMethod.GET)
 	public Object allProduct() {

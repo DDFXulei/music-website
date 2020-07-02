@@ -9,21 +9,17 @@ public interface ProductService {
 
 
 	boolean addProduct (Product product);
+	
+	boolean deleteProduct(Long productId);
 
-    boolean updateProductMsg(Product product);
-
-    boolean updateProductUrl(Product product);
-
-    boolean updateProductPic(Product product);
-
-    boolean deleteProduct(Long id);
+    boolean updateProduct(Product product); 
+    
+    boolean updateProductPic(Product product); 
     
     List<Product> allProducts();
 
-    List<Product> Product();
-
-    List<Product> productOfId(Long id);
-
+    Product productOfId(Long productId);
+    //ABOVE
     List<Product> productOfName(String name);
     
     List<Product> productOfType(Long productType);

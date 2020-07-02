@@ -91,29 +91,7 @@
           <el-input v-model="registerForm.productName" placeholder="请输入产品名称"></el-input>
         </el-form-item>
         <el-form-item label="产品图片">
-          <el-upload
-            action="#"
-            list-type="picture-card"
-            :multiple="false"
-            :auto-upload="false"
-            :disabled="dialogVisible"
-            >
-              <i slot="default" class="el-icon-plus"></i>
-              <div slot="file" slot-scope="{file}">
-                <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
-                <span class="el-upload-list__item-actions" >
-                  <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
-                    <i class="el-icon-zoom-in"></i>
-                  </span>
-                  <span v-if="!disabled" class="el-upload-list__item-delete" @click="handleRemove(file)">
-                    <i class="el-icon-delete"></i>
-                  </span>
-                </span>
-              </div>
-          </el-upload>
-          <!--<el-dialog :visible.sync="dialogVisible">
-            <img width="100%" :src="dialogImageUrl" alt="">
-          </el-dialog>-->
+
         </el-form-item>
         <el-form-item label="产品类别">
           <el-select v-model="registerForm.productType" placeholder="请选择产品类别">
@@ -331,7 +309,7 @@ export default {
       this.currentPage = val
     },
     uploadUrl (name, id) {
-      return `${this.$store.state.HOST}/product/${name}/update?id=${id}`
+      return `${this.$store.state.HOST}/product/${name}/update?productId=${id}`
     },
     // 添加歌手
     addsinger () {

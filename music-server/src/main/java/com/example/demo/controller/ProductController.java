@@ -71,8 +71,7 @@ public class ProductController {
 	// 更新产品头像
 	@ResponseBody
 	@RequestMapping(value = "/product/avatar/update", method = RequestMethod.POST)
-	public Object updateProductPic(@RequestParam("file") MultipartFile avatorFile,
-			@RequestParam("poductId") Long poductId) {
+	public Object updateProductPic(@RequestParam("file") MultipartFile avatorFile,@RequestParam("productId") Long productId) {
 		JSONObject jsonObject = new JSONObject();
 
 		if (avatorFile.isEmpty()) {
@@ -81,8 +80,7 @@ public class ProductController {
 			return jsonObject;
 		}
 		String fileName = System.currentTimeMillis() + avatorFile.getOriginalFilename();
-		String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "img"
-				+ System.getProperty("file.separator") + "productPic";
+		String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "img" + System.getProperty("file.separator") + "productPic" ;
 		File file1 = new File(filePath);
 		if (!file1.exists()) {
 			file1.mkdir();
@@ -93,8 +91,8 @@ public class ProductController {
 		try {
 			avatorFile.transferTo(dest);
 			Product product = new Product();
-			product.setProductId(poductId);
-			product.setProductPic(filePath);
+			product.setProductId(productId);
+			product.setProductPic(storeAvatorPath);
 			boolean res = productService.updateProductPic(product);
 			if (res) {
 				jsonObject.put("code", 1);
@@ -107,9 +105,7 @@ public class ProductController {
 				return jsonObject;
 			}
 
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		}catch (IOException e) {
 			jsonObject.put("code", 0);
 			jsonObject.put("msg", "上传失败" + e.getMessage());
 			return jsonObject;

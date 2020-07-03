@@ -29,12 +29,13 @@ public class ProductTypeController {
 	@RequestMapping(value = "/productType/add", method = RequestMethod.POST)
 	public Object addProdcutType(HttpServletRequest req) {
 		JSONObject jsonObject = new JSONObject();
+		String productTypeId = req.getParameter("productTypeId").trim();
 		String productTypeName = req.getParameter("productTypeName").trim();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		// String createTime = new Date().toString();
 		// dateFormat.parse(createTime);
 		ProductType productType = new ProductType();
-
+		productType.setProductTypeId(Long.parseLong(productTypeId));
 		productType.setProductTypeName(productTypeName);
 
 		productType.setCreateTime(new Date());

@@ -90,16 +90,16 @@
        <el-form-item label="产品名称" prop="productName">
           <el-input v-model="registerForm.productName" placeholder="请输入产品名称"></el-input>
         </el-form-item>
-        <el-form-item label="产品图片">
+        <!-- <el-form-item label="产品图片">
 
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="产品类别">
           <el-select v-model="registerForm.productType" placeholder="请选择产品类别">
             <el-option
             v-for="item in options"
-            :key="item.type"
-            :label="item.name"
-            :value="item.type"
+            :key="item.productTypeId"
+            :label="item.productTypeName"
+            :value="item.productTypeId"
             ></el-option>
           </el-select>
         </el-form-item>
@@ -119,9 +119,9 @@
             v-model="registerForm.productIntro">
           </el-input>
         </el-form-item>
-        <el-form-item label="产品参数">
+        <!-- <el-form-item label="产品参数">
 
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button size="mini" @click="centerDialogVisible = false">取 消</el-button>
@@ -195,7 +195,7 @@
 
 <script>
 import { mixin } from '../mixins'
-import { setSinger, getProductList, updateSingerMsg, deleteSinger } from '../api/index'
+import { setSinger, getProductList, updateSingerMsg, deleteSinger, getProductTypeList } from '../api/index'
 
 export default {
   name: 'product-page',
@@ -236,32 +236,7 @@ export default {
       pageSize: 5, // 页数
       currentPage: 1, // 当前页
       idx: -1,
-      options: [
-        {
-          name: '吸附式干燥机',
-          type: 1
-        },
-        {
-          name: '冷冻式干燥机',
-          type: 2
-        },
-        {
-          name: '管道过滤器',
-          type: 4
-        },
-        {
-          name: '制氮机',
-          type: 8
-        },
-        {
-          name: '工艺气体干燥',
-          type: 16
-        },
-        {
-          name: '其他辅助产品',
-          type: 32
-        }
-      ]
+      options: []
     }
   },
   computed: {
@@ -345,8 +320,14 @@ export default {
         this.tableData = res
         this.tempDate = res
         this.currentPage = 1
-        console.log(this.tableData)
+        // console.log(this.tableData)
       })
+      getProductTypeList().then(
+        res => {
+          this.options = res
+          console.log(this.options)
+        }
+      )
     },
     // 编辑
     handleEdit (row) {

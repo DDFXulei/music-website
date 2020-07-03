@@ -195,7 +195,7 @@ create table PRODUCT_MAIN
 drop table PRODUCT_TYPE
 create table PRODUCT_TYPE
 (
-   PRODUCT_TYPE_ID      bigint not null AUTO_INCREMENT,
+   PRODUCT_TYPE_ID      bigint not null,
    PRODUCT_TYPE_NAME    varchar(50),
    CREATE_TIME          datetime,
    UPDATE_TIME          datetime,

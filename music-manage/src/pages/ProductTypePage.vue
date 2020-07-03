@@ -40,15 +40,16 @@
     <el-dialog title="添加产品类别" :visible.sync="centerDialogVisible" width="450px" center>
       <el-form
         :model="registerForm"
+        :rules="rules"
         status-icon
         ref="registerForm"
         label-width="80px"
         class="demo-ruleForm"
         >
-      <!-- <el-form-item label="类别ID">
-          <el-input v-model="registerForm.productTypeId"></el-input>
-      </el-form-item> -->
-       <el-form-item label="产品类别">
+      <el-form-item label="类别ID"  prop="productTypeId">
+          <el-input v-model.number="registerForm.productTypeId"></el-input>
+      </el-form-item>
+       <el-form-item label="产品类别" prop="productTypeName">
           <el-input v-model="registerForm.productTypeName"></el-input>
         </el-form-item>
 
@@ -65,7 +66,7 @@
         <el-form-item label="产品类别Id">
           <el-input :disabled="true" v-model="formData.productTypeId"></el-input>
         </el-form-item>
-        <el-form-item label="产品类别">
+        <el-form-item label="产品类别" >
           <el-input v-model="formData.productTypeName"></el-input>
         </el-form-item>
       </el-form>
@@ -88,6 +89,7 @@
 
 <script>
 import { mixin } from '../mixins'
+// import { isPhone } from '../validate/validate'
 import { getProductTypeList, updateProductType, setProductType, deleteProductType } from '../api/index'
 
 export default {
@@ -95,9 +97,15 @@ export default {
   mixins: [mixin],
   data () {
     return {
-      productTypeId: '',
-      productTypeName: '',
-
+      rules: {
+        productTypeId: [
+          { required: true, message: '请输类别id', trigger: 'blur' },
+          { type: 'number', message: '请输入数字类型', trigger: 'blur' }
+        ],
+        productTypeName: [
+          { required: true, message: '请输类别名称', trigger: 'blur' }
+        ]
+      },
       registerForm: {
         productTypeId: '',
         // 添加框信息
@@ -152,6 +160,18 @@ export default {
 
     // 添加产品类别
     addProductType () {
+      // if (this.registerForm.productTypeId.replace(/(^s*)|(s*$)/g, '').length === 0) {
+      //   this.notify('类别ID不能为空', 'error')
+      //   return false
+      // }
+      if (parseFloat(this.registerForm.productTypeId).toString() === 'NaN') {
+        this.notify('请填写数字类型的类别ID', 'error')
+        return false
+      }
+      if (this.registerForm.productTypeName.replace(/(^s*)|(s*$)/g, '').length === 0) {
+        this.notify('请填写类别名称', 'error')
+        return false
+      }
       let params = new URLSearchParams()
       params.append('productTypeId', this.registerForm.productTypeId)
       params.append('productTypeName', this.registerForm.productTypeName)

@@ -44,7 +44,7 @@
         <el-table-column prop="productName" label="产品名称" width="120" align="center"></el-table-column>
         <el-table-column label="产品类别" width="120" align="center">
           <template slot-scope="scope">
-            <div>{{scope.row.productType}}</div>
+            <div>{{scope.row.productType.productTypeName}}</div>
           </template>
         </el-table-column>
         <el-table-column label="产品标题" width="120" align="center">
@@ -125,24 +125,24 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button size="mini" @click="centerDialogVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="addsinger">确 定</el-button>
+        <el-button type="primary" size="mini" @click="addproduct">确 定</el-button>
       </span>
     </el-dialog>
 
     <!-- 编辑弹出框 -->
-    <el-dialog title="编辑" :visible.sync="editVisible" width="80%">
+    <el-dialog title="编辑产品" :visible.sync="editVisible" width="80%">
       <el-form ref="formData" :model="formData" label-width="10%">
         <el-form-item label="产品名称">
           <el-input v-model="formData.productName"></el-input>
         </el-form-item>
         <el-form-item label="产品类别">
           <el-select v-model="formData.productType" placeholder="请选择产品类别">
-            <el-option label="吸附式干燥机" value="1"></el-option>
-            <el-option label="冷冻式干燥机" value="2"></el-option>
-            <el-option label="管道过滤器" value="4"></el-option>
-            <el-option label="制氮机" value="8"></el-option>
-            <el-option label="工艺气体干燥" value="16"></el-option>
-            <el-option label="其他辅助产品" value="32"></el-option>
+            <el-option
+            v-for="item in options"
+            :key="item.productTypeId"
+            :label="item.productTypeName"
+            :value="item.productTypeId"
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="产品标题">
@@ -160,20 +160,6 @@
             placeholder="请输入产品简介"
             v-model="formData.productIntro">
           </el-input>
-        </el-form-item>
-        <el-form-item label="产品参数">
-            <div class="product-img">
-              <img :src="getUrl(formData.productParam)" alt="" style="width: 100%;"/>
-            </div>
-            <el-upload
-              class="upload-demo"
-              :action="uploadUrl('param',formData.productId)"
-              :show-file-list="false"
-              :on-success="handleAvatarSuccess"
-              :before-upload="beforeAvatarUpload"
-              >
-              <el-button size="mini">添加图片</el-button>
-            </el-upload>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -195,7 +181,7 @@
 
 <script>
 import { mixin } from '../mixins'
-import { setSinger, getProductList, updateSingerMsg, deleteSinger, getProductTypeList } from '../api/index'
+import { setProduct, getProductList, updateSingerMsg, deleteSinger, getProductTypeList } from '../api/index'
 
 export default {
   name: 'product-page',
@@ -229,6 +215,7 @@ export default {
         productId: '',
         productName: '',
         productTitle: '',
+        productTypeId: '',
         productType: '',
         productIntro: '',
         productParam: ''
@@ -286,18 +273,15 @@ export default {
     uploadUrl (name, id) {
       return `${this.$store.state.HOST}/product/${name}/update?productId=${id}`
     },
-    // 添加歌手
-    addsinger () {
-      let d = this.registerForm.birth
-      let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+    // 添加产品
+    addproduct () {
+      // 添加框信息
       let params = new URLSearchParams()
-      params.append('name', this.registerForm.name)
-      params.append('sex', this.registerForm.sex)
-      params.append('pic', '/img/singerPic/hhh.jpg')
-      params.append('birth', datetime)
-      params.append('location', this.registerForm.location)
-      params.append('introduction', this.registerForm.introduction)
-      setSinger(params)
+      params.append('productName', this.registerForm.productName)
+      params.append('productTitle', this.registerForm.productTitle)
+      params.append('productType', this.registerForm.productType)
+      params.append('productIntro', this.registerForm.productIntro)
+      setProduct(params)
         .then(res => {
           if (res.code === 1) {
             this.getData()
@@ -320,7 +304,7 @@ export default {
         this.tableData = res
         this.tempDate = res
         this.currentPage = 1
-        // console.log(this.tableData)
+        console.log(this.tableData)
       })
       getProductTypeList().then(
         res => {

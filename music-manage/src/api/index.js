@@ -86,13 +86,14 @@ export const deleteListSong = (songId) => get(`ListSong/delete?songId=${songId}`
 export const getProductList = () => get('productList')
 // 返回指定ID的产品
 export const getProductOfProductId = (id) => get(`/product/detail?productId=${id}`)
-
+// 添加产品
+export const setProduct = (params) => post(`product/add`, params)
 
 //=======================> 产品类别API
 export const getProductTypeList = () => get('productTypeList')
-// 更新歌手信息
+// 更新产品类别
 export const updateProductType = (params) => post(`productType/update`, params)
 // 添加产品类别
 export const setProductType = (params) => post(`productType/add`, params)
-// 删除歌曲
+// 删除产品类别
 export const deleteProductType = (productTypeId) => get(`productType/delete?productTypeId=${productTypeId}`)

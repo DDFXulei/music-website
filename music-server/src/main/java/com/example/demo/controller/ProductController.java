@@ -43,13 +43,14 @@ public class ProductController {
 	public Object addProduct(HttpServletRequest req) {
 
 		JSONObject jsonObject = new JSONObject();
-		String productId = req.getParameter("productId").trim();
+//		String productId = req.getParameter("productId").trim();
 		String productName = req.getParameter("productName").trim();
+		String productTitle = req.getParameter("productTitle").trim();
 		String productIntro = req.getParameter("productIntro").trim();
 		String productPic = req.getParameter("productPic").trim();
 
 		Product product = new Product();
-		product.setProductId(Long.parseLong(productId));
+//		product.setProductId(Long.parseLong(productId));
 		product.setProductName(productName);
 		product.setProductIntro(productIntro);
 		product.setProductPic(productPic);
@@ -164,7 +165,7 @@ public class ProductController {
 	
 	// 返回所有产品
 	@RequestMapping(value = "/productList", method = RequestMethod.GET)
-	public Object allProduct() {
+	public Object allProducts() {
 		return productService.allProducts();
 	}
 

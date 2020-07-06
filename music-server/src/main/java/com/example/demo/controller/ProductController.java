@@ -43,17 +43,17 @@ public class ProductController {
 	public Object addProduct(HttpServletRequest req) {
 
 		JSONObject jsonObject = new JSONObject();
-//		String productId = req.getParameter("productId").trim();
+		String productId = req.getParameter("productId").trim();
 		String productName = req.getParameter("productName").trim();
 		String productTitle = req.getParameter("productTitle").trim();
 		String productIntro = req.getParameter("productIntro").trim();
-		String productPic = req.getParameter("productPic").trim();
+		String productTypeId = req.getParameter("productTypeId").trim();
 
 		Product product = new Product();
-//		product.setProductId(Long.parseLong(productId));
+		product.setProductId(Long.parseLong(productId));
 		product.setProductName(productName);
 		product.setProductIntro(productIntro);
-		product.setProductPic(productPic);
+		product.setProductTypeId(Long.parseLong(productTypeId));
 
 		boolean res = productService.addProduct(product);
 

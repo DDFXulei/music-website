@@ -17,6 +17,7 @@
 		<result column="PRODUCT_PARAM" property="productParam" jdbcType="VARCHAR" />
 		<association property="productType" javaType="com.example.demo.domain.ProductType" >
 			<!-- id:声明主键，表示 PRODUCT_TYPE_ID 是关联查询对象的唯一标识-->
+			<id column="PRODUCT_TYPE_ID" property= "productTypeId"/>
 			<result property="productTypeName" column="PRODUCT_TYPE_NAME" />
 		</association>
 	</resultMap>
@@ -177,7 +178,7 @@
 	<select id="allProducts" resultMap="BaseResultMap">
 		select 
 			M.PRODUCT_ID,M.PRODUCT_TYPE,M.PRODUCT_NAME,M.PRODUCT_TITLE,M.PRODUCT_PIC,M.PRODUCT_INTRO,M.CREATE_TIME,M.UPDATE_TIME,M.PRODUCT_FEATURE_ID,
-			M.PRODUCT_PARAM,T.PRODUCT_TYPE_NAME
+			M.PRODUCT_PARAM,T.PRODUCT_TYPE_ID,T.PRODUCT_TYPE_NAME
 		from 
 			PRODUCT_MAIN M
 		left join PRODUCT_TYPE T on M.PRODUCT_TYPE = T.PRODUCT_TYPE_ID

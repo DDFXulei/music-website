@@ -94,7 +94,7 @@
 
         </el-form-item> -->
         <el-form-item label="产品类别">
-          <el-select v-model="registerForm.productType" placeholder="请选择产品类别">
+          <el-select v-model="registerForm.productTypeId" placeholder="请选择产品类别">
             <el-option
             v-for="item in options"
             :key="item.productTypeId"
@@ -136,7 +136,7 @@
           <el-input v-model="formData.productName"></el-input>
         </el-form-item>
         <el-form-item label="产品类别">
-          <el-select v-model="formData.productType" placeholder="请选择产品类别">
+          <el-select v-model="formData.productType.productTypeName" placeholder="请选择产品类别">
             <el-option
             v-for="item in options"
             :key="item.productTypeId"
@@ -199,7 +199,7 @@ export default {
         // 添加框信息
         productName: '',
         productTitle: '',
-        productType: '',
+        productTypeId: '',
         productIntro: '',
         productParam: ''
       },
@@ -277,9 +277,10 @@ export default {
     addproduct () {
       // 添加框信息
       let params = new URLSearchParams()
+      params.append('productId', Date.parse(new Date()))
       params.append('productName', this.registerForm.productName)
       params.append('productTitle', this.registerForm.productTitle)
-      params.append('productType', this.registerForm.productType)
+      params.append('productTypeId', this.registerForm.productTypeId)
       params.append('productIntro', this.registerForm.productIntro)
       setProduct(params)
         .then(res => {
@@ -304,12 +305,12 @@ export default {
         this.tableData = res
         this.tempDate = res
         this.currentPage = 1
-        console.log(this.tableData)
+        console.log('ProductList' + this.tableData)
       })
       getProductTypeList().then(
         res => {
           this.options = res
-          console.log(this.options)
+          console.log('options' + this.options)
         }
       )
     },

@@ -142,7 +142,7 @@ export default {
       } else {
         this.tableData = []
         for (let item of this.tempDate) {
-          if (item.productTypeName.includes(this.select_word)) {
+          if (item.productName.includes(this.select_word)) {
             this.tableData.push(item)
           }
         }

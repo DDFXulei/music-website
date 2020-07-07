@@ -88,6 +88,11 @@ export const getProductList = () => get('productList')
 export const getProductOfProductId = (id) => get(`/product/detail?productId=${id}`)
 // 添加产品
 export const setProduct = (params) => post(`product/add`, params)
+// 更新产品信息
+export const updateProductMsg = (params) => post(`product/update`, params)
+// 删除产品
+export const deleteProduct = (productId) => get(`product/delete?productId=${productId}`)
+
 
 //=======================> 产品类别API
 export const getProductTypeList = () => get('productTypeList')

@@ -93,7 +93,7 @@
         <!-- <el-form-item label="产品图片">
 
         </el-form-item> -->
-        <el-form-item label="产品类别">
+        <el-form-item label="产品类别" prop="productTypeId">
           <el-select v-model="registerForm.productTypeId" placeholder="请选择产品类别">
             <el-option
             v-for="item in options"
@@ -103,7 +103,7 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="产品标题">
+        <el-form-item label="产品标题" prop="productTitle">
           <el-input
             type="textarea"
             autosize
@@ -111,7 +111,7 @@
             v-model="registerForm.productTitle">
           </el-input>
         </el-form-item>
-        <el-form-item label="产品简介">
+        <el-form-item label="产品简介" prop="productIntro">
           <el-input
             type="textarea"
             autosize
@@ -132,11 +132,14 @@
     <!-- 编辑弹出框 -->
     <el-dialog title="编辑产品" :visible.sync="editVisible" width="80%">
       <el-form ref="formData" :model="formData" label-width="10%">
+        <el-form-item label="产品Id">
+          <el-input v-model="formData.productId"></el-input>
+        </el-form-item>
         <el-form-item label="产品名称">
           <el-input v-model="formData.productName"></el-input>
         </el-form-item>
         <el-form-item label="产品类别">
-          <el-select v-model="formData.productType.productTypeName" placeholder="请选择产品类别">
+          <el-select v-model="formData.productType.productTypeId" placeholder="请选择产品类别">
             <el-option
             v-for="item in options"
             :key="item.productTypeId"
@@ -150,7 +153,7 @@
             type="textarea"
             autosize
             placeholder="请输入产品标题"
-            v-model="formData.productIntro">
+            v-model="formData.productTitle">
           </el-input>
         </el-form-item>
         <el-form-item label="产品简介">
@@ -181,7 +184,7 @@
 
 <script>
 import { mixin } from '../mixins'
-import { setProduct, getProductList, updateSingerMsg, deleteSinger, getProductTypeList } from '../api/index'
+import { setProduct, getProductList, updateProductMsg, deleteProduct, getProductTypeList } from '../api/index'
 
 export default {
   name: 'product-page',
@@ -193,6 +196,15 @@ export default {
       rules: {
         productName: [
           { required: true, message: '请输入产品名称', trigger: 'blur' }
+        ],
+        productTypeId: [
+          { required: true, message: '请选择产品类别', trigger: 'blur' }
+        ],
+        productTitle: [
+          { required: true, message: '请填写产品标题', trigger: 'blur' }
+        ],
+        productIntro: [
+          { required: true, message: '请选择产品介绍', trigger: 'blur' }
         ]
       },
       registerForm: {
@@ -215,7 +227,6 @@ export default {
         productId: '',
         productName: '',
         productTitle: '',
-        productTypeId: '',
         productType: '',
         productIntro: '',
         productParam: ''
@@ -275,6 +286,22 @@ export default {
     },
     // 添加产品
     addproduct () {
+      if (this.registerForm.productName.replace(/(^s*)|(s*$)/g, '').length === 0) {
+        this.notify('请填写产品名称', 'error')
+        return false
+      }
+      if (this.registerForm.productTitle.replace(/(^s*)|(s*$)/g, '').length === 0) {
+        this.notify('请完善产品标题', 'error')
+        return false
+      }
+      if (this.registerForm.productTypeId.length === 0) {
+        this.notify('请选择产品类别', 'error')
+        return false
+      }
+      if (this.registerForm.productIntro.replace(/(^s*)|(s*$)/g, '').length === 0) {
+        this.notify('请完善产品介绍', 'error')
+        return false
+      }
       // 添加框信息
       let params = new URLSearchParams()
       params.append('productId', Date.parse(new Date()))
@@ -323,23 +350,19 @@ export default {
         productName: row.productName,
         productTitle: row.productTitle,
         productType: row.productType,
-        productIntro: row.productIntro,
-        productParam: row.productParam
+        productIntro: row.productIntro
       }
     },
     // 保存编辑
     saveEdit () {
-      let d = new Date(this.form.birth)
-      let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+      // console.log(this.formData)
       let params = new URLSearchParams()
-      params.append('id', this.form.id)
-      params.append('name', this.form.name)
-      params.append('sex', this.form.sex)
-      params.append('pic', this.form.pic)
-      params.append('birth', datetime)
-      params.append('location', this.form.location)
-      params.append('introduction', this.form.introduction)
-      updateSingerMsg(params)
+      params.append('productId', this.formData.productId)
+      params.append('productName', this.formData.productName)
+      params.append('productTitle', this.formData.productTitle)
+      params.append('productTypeId', this.formData.productType.productTypeId)
+      params.append('productIntro', this.formData.productIntro)
+      updateProductMsg(params)
         .then(res => {
           if (res.code === 1) {
             this.getData()
@@ -355,7 +378,7 @@ export default {
     },
     // 确定删除
     deleteRow () {
-      deleteSinger(this.idx)
+      deleteProduct(this.idx)
         .then(res => {
           if (res) {
             this.getData()

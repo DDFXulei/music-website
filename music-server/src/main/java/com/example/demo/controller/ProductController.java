@@ -2,6 +2,9 @@ package com.example.demo.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.Product;
+import com.example.demo.domain.Singer;
 import com.example.demo.service.impl.ProductServiceImpl;
 
 @RestController
@@ -72,7 +76,8 @@ public class ProductController {
 	// 更新产品头像
 	@ResponseBody
 	@RequestMapping(value = "/product/avatar/update", method = RequestMethod.POST)
-	public Object updateProductPic(@RequestParam("file") MultipartFile avatorFile,@RequestParam("productId") Long productId) {
+	public Object updateProductPic(@RequestParam("file") MultipartFile avatorFile,
+			@RequestParam("productId") Long productId) {
 		JSONObject jsonObject = new JSONObject();
 
 		if (avatorFile.isEmpty()) {
@@ -81,7 +86,8 @@ public class ProductController {
 			return jsonObject;
 		}
 		String fileName = System.currentTimeMillis() + avatorFile.getOriginalFilename();
-		String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "img" + System.getProperty("file.separator") + "productPic" ;
+		String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "img"
+				+ System.getProperty("file.separator") + "productPic";
 		File file1 = new File(filePath);
 		if (!file1.exists()) {
 			file1.mkdir();
@@ -106,11 +112,11 @@ public class ProductController {
 				return jsonObject;
 			}
 
-		}catch (IOException e) {
+		} catch (IOException e) {
 			jsonObject.put("code", 0);
 			jsonObject.put("msg", "上传失败" + e.getMessage());
 			return jsonObject;
-		}finally {
+		} finally {
 			return jsonObject;
 		}
 
@@ -119,7 +125,8 @@ public class ProductController {
 	// 更新产品参数图片
 	@ResponseBody
 	@RequestMapping(value = "/product/param/update", method = RequestMethod.POST)
-	public Object updateProductParam(@RequestParam("file") MultipartFile avatorFile,@RequestParam("productId") Long productId) {
+	public Object updateProductParam(@RequestParam("file") MultipartFile avatorFile,
+			@RequestParam("productId") Long productId) {
 		JSONObject jsonObject = new JSONObject();
 
 		if (avatorFile.isEmpty()) {
@@ -128,7 +135,8 @@ public class ProductController {
 			return jsonObject;
 		}
 		String fileName = System.currentTimeMillis() + avatorFile.getOriginalFilename();
-		String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "img" + System.getProperty("file.separator") + "productPic/param/" ;
+		String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "img"
+				+ System.getProperty("file.separator") + "productPic/param/";
 		File file1 = new File(filePath);
 		if (!file1.exists()) {
 			file1.mkdir();
@@ -153,20 +161,51 @@ public class ProductController {
 				return jsonObject;
 			}
 
-		}catch (IOException e) {
+		} catch (IOException e) {
 			jsonObject.put("code", 0);
 			jsonObject.put("msg", "上传失败" + e.getMessage());
 			return jsonObject;
-		}finally {
+		} finally {
 			return jsonObject;
 		}
 
 	}
-	
+
 	// 返回所有产品
 	@RequestMapping(value = "/productList", method = RequestMethod.GET)
 	public Object allProducts() {
 		return productService.allProducts();
+	}
+
+	// 更新产品信息
+	@ResponseBody
+	@RequestMapping(value = "/product/update", method = RequestMethod.POST)
+	public Object updateSingerMsg(HttpServletRequest req) {
+		JSONObject jsonObject = new JSONObject();
+		String productId = req.getParameter("productId").trim();
+		String productName = req.getParameter("productName").trim();
+		String productTitle = req.getParameter("productTitle").trim();
+		String productTypeId = req.getParameter("productTypeId").trim();
+		String productIntro = req.getParameter("productIntro").trim();
+		Product product = new Product();
+		Date updateTime = new Date();
+		product.setProductId(Long.parseLong(productId));
+		product.setProductName(productName);
+		product.setProductTitle(productTitle);
+		product.setProductTypeId(Long.parseLong(productTypeId));
+		product.setProductIntro(productIntro);
+		product.setUpdateTime(updateTime);
+		
+		boolean res = productService.updateProduct(product);
+		if (res) {
+			jsonObject.put("code", 1);
+			jsonObject.put("msg", "修改成功");
+			return jsonObject;
+		} else {
+			jsonObject.put("code", 0);
+			jsonObject.put("msg", "修改失败");
+			return jsonObject;
+		}
 	}
 
 	// 返回指定id的Product
@@ -184,16 +223,18 @@ public class ProductController {
 		return productService.productOfName('%' + productName + '%');
 	}
 
-	// 返回指定类型的歌单
+	// 返回指定类型的产品
 	@RequestMapping(value = "/productList/type/detail", method = RequestMethod.GET)
 	public Object songListOfStyle(HttpServletRequest req) {
 		String productType = req.getParameter("productType").trim();
 		return productService.productOfType(Long.parseLong(productType));
 	}
-	
-	
-	
-	
-	
+
+	// 删除歌手
+	@RequestMapping(value = "/product/delete", method = RequestMethod.GET)
+	public Object deleteSinger(HttpServletRequest req) {
+		String productId = req.getParameter("productId");
+		return productService.deleteProduct(Long.parseLong(productId));
+	}
 
 }

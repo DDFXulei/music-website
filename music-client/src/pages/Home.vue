@@ -50,7 +50,7 @@ export default {
   },
   created () {
     this.newsList = newsList
-    console.log(newsList)
+    // console.log(newsList)
     // 获取歌单列表
     this.getSongList('songList')
     // 获取歌手列表

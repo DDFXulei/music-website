@@ -111,7 +111,7 @@ export default {
   line-height: 80px;
   font-size: 28px;
   font-weight: bold;
-  margin-left: 90px;
+  margin-left: 220px;
   display: inline-block;
   cursor: pointer;
 }
@@ -123,7 +123,7 @@ export default {
 .logo-hd{
   position: absolute;
   top:15px;
-  left: 30px;
+  left: 98px;
 }
 
 .logo-hd .icon {
@@ -190,9 +190,9 @@ input:focus {
 .menu {
   display: none;
   background-color: #fff;
-  width: 150px;
+  width: 0px;
   position: absolute;
-  right: 140px;
+  right: 40px;
   top: 90px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
   cursor: pointer;
@@ -203,30 +203,6 @@ input:focus {
 .navbar li:hover{
   color: #95d2f6;
 }
-
-.menu :nth-child(1):before {
-  content: " ";
-  display: block;/*独占一行*/
-  position: absolute;
-  right: 45px;
-  top: -5px; /*果断的露出上半部分*/
-  width: 10px;
-  height: 10px;
-  background-color: #ffffff;
-  transform: rotate(45deg); /*一个正方形倾斜四十五度就是三角了但是要把下半部分藏起来*/
-}
-
-.menu :nth-child(1):hover:before{
-  background-color: #95d2f6;
-}
-
-.menu li {
-  display: inline-block;
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
-}
-
 .show {
   display: block;
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="login-wrap">
-    <div class="ms-title">Yin-music 后台管理</div>
+    <div class="ms-title">无锡托普艾尔净化设备有限公司后台管理</div>
     <div class="ms-login">
       <el-form
         :model="ruleForm"
@@ -20,9 +20,9 @@
           ></el-input>
         </el-form-item>
         <div class="login-btn">
-          <el-button type="primary" @click="submitForm">登录</el-button>
+          <el-button type="primary" @click="submitForm" :loading="isLoading">登录</el-button>
         </div>
-        <p style="font-size:12px;line-height:30px;color:#999;">Tips : 用户名和密码要写数据库里的。</p>
+        <!-- <p style="font-size:12px;line-height:30px;color:#999;">Tips : 用户名和密码要写数据库里的。</p> -->
       </el-form>
     </div>
   </div>
@@ -36,6 +36,7 @@ export default {
   mixins: [mixin],
   data: function () {
     return {
+      isLoading: false,
       ruleForm: {
         username: 'admin',
         password: '123'
@@ -50,6 +51,7 @@ export default {
   },
   methods: {
     submitForm () {
+      this.isLoading = true
       let params = new URLSearchParams()
       params.append('name', this.ruleForm.username)
       params.append('password', this.ruleForm.password)

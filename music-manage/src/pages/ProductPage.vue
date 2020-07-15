@@ -132,9 +132,6 @@
     <!-- 编辑弹出框 -->
     <el-dialog title="编辑产品" :visible.sync="editVisible" width="80%">
       <el-form ref="formData" :model="formData" label-width="10%">
-        <el-form-item label="产品Id">
-          <el-input v-model="formData.productId"></el-input>
-        </el-form-item>
         <el-form-item label="产品名称">
           <el-input v-model="formData.productName"></el-input>
         </el-form-item>

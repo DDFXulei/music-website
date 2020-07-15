@@ -1,12 +1,12 @@
 <template>
   <div class="swiper">
-    <div class="swiper-container">
-      <el-carousel indicator-position="outside" height="480px" :interval="4000">
+    <!-- <div class="swiper-container"> -->
+      <el-carousel indicator-position="none"  height="480px" :interval="4000">
         <el-carousel-item v-for="(item, index) in swiperList" :key="index">
           <img :src="item.picImg"/>
         </el-carousel-item>
       </el-carousel>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
 
 <style scoped>
 .swiper{
-  width: 90%;
+  width: 100%;
   margin: auto;
   margin-top: 10px;
 
@@ -36,5 +36,8 @@ export default {
 img{
   width: 100%;
   height: 100%;
+}
+.swiper ul {
+  font-size: 1em;
 }
 </style>

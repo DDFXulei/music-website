@@ -59,7 +59,7 @@
                                     <div class="jsh">配有高温保护装置和低功率密度电加热器，寿命长，低风险</div>
                                 </div>
                             </li>
-                        </ul>                                 
+                        </ul>
                     </div>
                 </div>
 
@@ -77,8 +77,6 @@
             </div>
         </div>
     </div>
-  </div>
-</div>
 </template>
 
 <script>

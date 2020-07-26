@@ -41,10 +41,6 @@ export default {
   },
   data () {
     return {
-      songsList: [
-        {name: '歌单', list: []},
-        {name: '歌手', list: []}
-      ],
       newsList: []
     }
   },

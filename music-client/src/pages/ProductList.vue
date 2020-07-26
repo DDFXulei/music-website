@@ -5,9 +5,9 @@
         <li
           v-for="(item, index) in productType"
           :key="index"
-          :class="{active: item.name === activeName}"
-          @click="handleChangeView(item.name,index)">
-          {{item.name}}
+          :class="{active: item.productTypeName === activeName}"
+          @click="handleChangeView(item.productTypeName,index)">
+          {{item.productTypeName}}
         </li>
       </ul>
     </div>
@@ -29,7 +29,7 @@
 
 <script>
 import ContentList from '../components/ContentList'
-import { getProductList, getProductListOfType } from '../api/index'
+import { getProductList, getProductListOfType, getProductTypeList } from '../api/index'
 import { productType } from '../assets/data/productList'
 
 export default {
@@ -54,9 +54,15 @@ export default {
     }
   },
   mounted () {
-    this.productType = productType
-    this.typeName = this.productType
+    // this.productType = productType
+    // this.typeName = this.productType
     this.handleChangeView('全部类别', 0)
+    getProductTypeList().then(
+      res => {
+        this.productType = res
+        this.typeName = this.productType
+      }
+    )
   },
   methods: {
     // 获取当前页

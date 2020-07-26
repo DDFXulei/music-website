@@ -69,7 +69,7 @@
 		where PRODUCT_TYPE_ID = #{productTypeId,jdbcType=BIGINT}
 	</delete>
 	<select id="productTypeList" resultMap="ResultMapWithBLOBs">
-		select * from PRODUCT_TYPE where PRODUCT_TYPE_ID > 0
+		select * from PRODUCT_TYPE
 	</select>
 	<update id="updateProductType"
 		parameterType="com.example.demo.domain.ProductType">

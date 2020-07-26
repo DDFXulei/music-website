@@ -37,6 +37,9 @@ export const getListProductOfProductId = (productId) => get(`productList/detail?
 export const getProductEnvOfProductId = (productId) => get(`productList/detail?productId=${productId}`)
 
 
+//=======================> 产品类别API
+export const getProductTypeList = () => get('productTypeList')
+
 
 // =======================> 歌手 API
 // 返回所有歌手

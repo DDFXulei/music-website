@@ -37,7 +37,7 @@ public class ProductController {
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
 			registry.addResourceHandler("/img/productPic/**")
-					.addResourceLocations("file:D:/EclipseWorkSpace/music-website/music-server/img/productPic/");
+					.addResourceLocations("file:"+System.getProperty("user.dir")+"/img/productPic/");
 		}
 	}
 

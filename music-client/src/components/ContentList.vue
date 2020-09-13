@@ -3,7 +3,10 @@
         <ul class="section-content">
           <li class="content-item" v-for="(item, index) in contentList" :key="index">
             <div class="kuo" @click="goDetail(item)">
-              <img class="item-img" :src="attachImageUrl(item.productPic)" alt="">
+              <img @οnerrοr="nofind()" class="item-img" :src="attachImageUrl(item.productPic)" alt="">
+              <div slot="error" v-if="notAvailable">
+                <i class="el-icon-picture-outline"></i>
+              </div>
             </div>
             <p class="item-name">{{item.productName}}</p>
           </li>
@@ -17,16 +20,26 @@ import { mixin } from '../mixins'
 export default {
   name: 'content-list',
   mixins: [mixin],
+  data () {
+    return {
+      notAvailable: false
+    }
+  },
   props: [
     'contentList'
   ],
   methods: {
+    nofind () {
+      this.notAvailable = true
+    },
     goDetail (item) {
       console.log(item.productId)
       // this.$store.commit('setTempList', item)
       this.$store.commit('setProductId', item.productId)
       this.$store.commit('setProductType', item.productType)
       this.$store.commit('setProductPic', item.productPic)
+      this.$store.commit('setProductIntro', item.productIntro)
+      this.$store.commit('setProductTitle', item.productTitle)
       this.$store.commit('setProductName', item.productName)
       this.$store.commit('setUpdateTime', item.updateTime)
       this.$store.commit('setProductParam', item.productParam)

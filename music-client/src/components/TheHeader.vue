@@ -1,7 +1,7 @@
 <template>
   <div class="the-header">
     <!--图标-->
-    <div class="head-logo" @click="goHome">
+    <div class="head-logo" @click="goPage('/', '首页')">
       <div class="logo-hd">
         <img src="@/assets/img/swiper/log.jpg" alt="">
       </div>
@@ -62,9 +62,9 @@ export default {
     this.menuList = menuList
   },
   methods: {
-    goHome () {
-      this.$router.push({path: '/'})
-    },
+    // goHome () {
+    //   this.$router.push({path: '/'})
+    // },
     goPage (path, value) {
       document.querySelector('.menu').classList.remove('show')
       this.changeIndex(value)
